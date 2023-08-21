@@ -1,6 +1,8 @@
 import 'package:emart_app/consts/consts.dart';
-import 'package:emart_app/views/auth_screen/login_screen.dart';
+import 'package:emart_app/views/auth_screen/phone_auth_screen.dart';
+import 'package:emart_app/views/home_screen/home.dart';
 import 'package:emart_app/widgets/app_logo_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,8 +15,16 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   void changeScreen() {
-    Future.delayed(const Duration(seconds: 3), () {
-      Get.to(() => const LoginScreen());
+    Future.delayed(const Duration(seconds: 2), () {
+      auth.authStateChanges().listen((User? user) {
+        if (user == null && mounted) {
+          Get.to(() => const PhoneAuthScreen());
+        } else {
+          // Get.to(() => const PhoneAuthScreen());
+          Get.to(() => const Home());
+          print(user);
+        }
+      });
     });
   }
 

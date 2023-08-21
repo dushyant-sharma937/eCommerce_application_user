@@ -36,6 +36,17 @@ dependencies:
   cupertino_icons: ^1.0.2
   velocity_x: ^4.1.1
   get: ^4.6.5
+  firebase_core: ^2.15.1
+  firebase_auth: ^4.7.3
+  firebase_storage: ^11.2.6
+  cloud_firestore: ^4.8.5
+  connectivity_plus: ^4.0.2
+  twitter_login: ^4.4.2
+  google_sign_in: ^6.1.4
+  shared_preferences: ^2.2.0
+  image_picker: ^1.0.2
+  path: ^1.8.3
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +75,7 @@ flutter:
     - assets/
     - assets/icons/
     - assets/images/
+    - lib/services/category_model.json
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

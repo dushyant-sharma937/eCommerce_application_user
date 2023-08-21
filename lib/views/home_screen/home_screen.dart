@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
                 filled: true,
                 hintText: searchAnything,
                 hintStyle: TextStyle(
-                  color: textfieldGrey,
+                  color: Colors.black54,
                 ),
                 suffixIcon: Icon(Icons.search),
               ),

@@ -16,13 +16,17 @@ class Home extends StatelessWidget {
     var controller = Get.put(HomeController());
     var navBarItem = [
       BottomNavigationBarItem(
-          icon: Image.asset(icHome, width: 26), label: "Home"),
+          icon: Image.asset(icHome, width: 26, color: Colors.black87),
+          label: "Home"),
       BottomNavigationBarItem(
-          icon: Image.asset(icCategories, width: 26), label: "Categories"),
+          icon: Image.asset(icCategories, width: 26, color: Colors.black87),
+          label: "Categories"),
       BottomNavigationBarItem(
-          icon: Image.asset(icCart, width: 26), label: "Cart"),
+          icon: Image.asset(icCart, width: 26, color: Colors.black87),
+          label: "Cart"),
       BottomNavigationBarItem(
-          icon: Image.asset(icProfile, width: 26), label: "Profile"),
+          icon: Image.asset(icProfile, width: 26, color: Colors.black87),
+          label: "Profile"),
     ];
     var navBody = [
       const HomeScreen(),

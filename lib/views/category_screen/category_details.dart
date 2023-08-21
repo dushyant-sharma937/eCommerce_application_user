@@ -1,4 +1,5 @@
 import 'package:emart_app/consts/consts.dart';
+import 'package:emart_app/controllers/product_controller.dart';
 import 'package:emart_app/views/category_screen/item_details.dart';
 import 'package:emart_app/widgets/bg_widgets.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class CategoryDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.find<ProductController>();
     return bgWidget(
         child: Scaffold(
       appBar: AppBar(
@@ -25,8 +27,8 @@ class CategoryDetails extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               child: Row(
                 children: List.generate(
-                    6,
-                    (index) => "Baby Clothing"
+                    controller.subcat.length,
+                    (index) => "${controller.subcat[index]}"
                         .text
                         .size(12)
                         .fontFamily(semibold)
