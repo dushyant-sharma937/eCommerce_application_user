@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:emart_app/consts/consts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SignInProvider extends ChangeNotifier {
@@ -50,13 +52,15 @@ class SignInProvider extends ChangeNotifier {
   }
 
   // check whether user exists or not in cloudfirestore
-  Future<bool> checkUserExists() async {
+  Future<bool> checkUserExists({context}) async {
     DocumentSnapshot snap =
         await FirebaseFirestore.instance.collection('users').doc(_uid).get();
     if (snap.exists) {
+      VxToast.show(context, msg: "Signed in as existing user");
       print('Existing user');
       return true;
     } else {
+      VxToast.show(context, msg: "Signed in as new user");
       print('New user');
       return false;
     }

@@ -154,7 +154,9 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                                   nameController.text.trim());
 
                               // checking whether user exists
-                              sp.checkUserExists().then((value) async {
+                              sp
+                                  .checkUserExists(context: context)
+                                  .then((value) async {
                                 if (value == true) {
                                   // user exists
                                   await sp
