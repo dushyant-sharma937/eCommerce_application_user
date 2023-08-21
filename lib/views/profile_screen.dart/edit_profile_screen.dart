@@ -91,7 +91,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         borderRadius: BorderRadius.circular(10)),
                     child: Obx(
                       () => Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           InkWell(
                             onTap: () {
@@ -134,18 +134,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                             .clip(Clip.antiAlias)
                                             .makeCentered(),
                           ),
+                          10.heightBox,
                           customTextField(
                               hint: "admin",
                               title: "Name",
                               isPass: false,
                               controller: controller.nameController),
-                          10.heightBox,
+                          20.heightBox,
                           customTextField(
                               hint: "admin@gmail.com",
                               title: "Email",
                               isPass: false,
                               controller: controller.emailController),
-                          20.heightBox,
+                          30.heightBox,
                           controller.isLoading.value
                               ? const Center(
                                   child: CircularProgressIndicator(
@@ -170,14 +171,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   title: "Submit",
                                   textColor: whiteColor,
                                 ).box.width(double.infinity).make(),
-                          10.heightBox,
                         ],
                       )
                           .box
                           .padding(const EdgeInsets.symmetric(horizontal: 10))
                           .white
                           .roundedSM
-                          .size(double.infinity, context.screenHeight * 0.55)
+                          .size(double.infinity, context.screenHeight * 0.45)
                           .make(),
                     ),
                   )

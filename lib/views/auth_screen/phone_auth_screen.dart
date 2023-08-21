@@ -1,10 +1,12 @@
 import 'package:emart_app/views/auth_screen/provider/internet_provider.dart';
 import 'package:emart_app/views/auth_screen/provider/sign_in_provider.dart';
 import 'package:emart_app/views/home_screen/home.dart';
+import 'package:emart_app/widgets/bg_widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../consts/consts.dart';
+import '../../widgets/app_logo_widget.dart';
 import '../../widgets/open_snack_bar.dart';
 
 class PhoneAuthScreen extends StatefulWidget {
@@ -24,70 +26,76 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        physics: const NeverScrollableScrollPhysics(),
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          child: Form(
-            key: formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: context.screenHeight * 0.25),
-                const Text(
-                  'Phone Login',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
+    return bgWidget(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            child: Form(
+              key: formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: context.screenHeight * 0.1),
+                  appLogoWidget(),
+                  10.heightBox,
+                  appname.text.fontFamily(bold).size(22).white.make(),
+                  5.heightBox,
+                  appversion.text.white.make(),
+                  SizedBox(height: context.screenHeight * 0.1),
+                  const Text(
+                    'Phone Login',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                UserInput(
-                  nameController: nameController,
-                  errorText: "Please enter your name",
-                  hintText: "Enter your name",
-                  icon: const Icon(Icons.account_circle),
-                ),
-                const SizedBox(height: 10),
-                UserInput(
-                  nameController: emailController,
-                  errorText: "Please enter your email",
-                  hintText: "Enter your email",
-                  icon: const Icon(Icons.email_rounded),
-                ),
-                const SizedBox(height: 10),
-                UserInput(
-                  nameController: phoneController,
-                  errorText: "Please enter your phone number",
-                  hintText: "Enter your phone number",
-                  icon: const Icon(Icons.phone),
-                ),
-                const SizedBox(height: 20),
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      login(context, "+91-${phoneController.text.trim()}");
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.greenAccent,
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 25),
-                        shape: ContinuousRectangleBorder(
-                            borderRadius: BorderRadius.circular(15))),
-                    child: const Text(
-                      'Register',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
+                  const SizedBox(height: 10),
+                  UserInput(
+                    nameController: nameController,
+                    errorText: "Please enter your name",
+                    hintText: "Enter your name",
+                    icon: const Icon(Icons.account_circle),
+                  ),
+                  const SizedBox(height: 10),
+                  UserInput(
+                    nameController: emailController,
+                    errorText: "Please enter your email",
+                    hintText: "Enter your email",
+                    icon: const Icon(Icons.email_rounded),
+                  ),
+                  const SizedBox(height: 10),
+                  UserInput(
+                    nameController: phoneController,
+                    errorText: "Please enter your phone number",
+                    hintText: "Enter your phone number",
+                    icon: const Icon(Icons.phone),
+                  ),
+                  const SizedBox(height: 20),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        login(context, "+91-${phoneController.text.trim()}");
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.greenAccent,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 25),
+                          shape: ContinuousRectangleBorder(
+                              borderRadius: BorderRadius.circular(15))),
+                      child: const Text(
+                        'Register',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(height: context.screenHeight * 0.25),
-              ],
+                ],
+              ),
             ),
           ),
         ),
