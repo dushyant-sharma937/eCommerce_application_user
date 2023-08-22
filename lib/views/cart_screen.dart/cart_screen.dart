@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/controllers/cart_controller.dart';
 import 'package:emart_app/services/firebase_services.dart';
+import 'package:emart_app/views/cart_screen.dart/shipping_screen.dart';
 import 'package:emart_app/widgets/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,6 +14,23 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var controller = Get.put(CartController());
     return Scaffold(
+      bottomNavigationBar: MaterialButton(
+        onPressed: () {
+          Get.to(() => const ShippingScreen());
+        },
+        color: Colors.red,
+        minWidth: context.width * 0.9,
+        height: 60,
+        elevation: 2,
+        shape:
+            ContinuousRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: "Proceed to shipping"
+            .text
+            .size(18)
+            .white
+            .fontFamily(semibold)
+            .make(),
+      ),
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: redColor,
@@ -39,6 +57,7 @@ class CartScreen extends StatelessWidget {
             } else {
               var data = snapshot.data!.docs;
               controller.calculatePrice(data);
+              controller.productSnapshot = data;
               return Padding(
                 padding: const EdgeInsets.all(12),
                 child: Column(
@@ -102,7 +121,7 @@ class CartScreen extends StatelessWidget {
                         () => Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            "Total"
+                            "Total : "
                                 .text
                                 .black
                                 .fontFamily(semibold)
@@ -119,20 +138,6 @@ class CartScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    MaterialButton(
-                      onPressed: () {},
-                      color: Colors.red,
-                      minWidth: context.width * 0.9,
-                      elevation: 2,
-                      shape: ContinuousRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      child: "Proceed to shipping"
-                          .text
-                          .size(18)
-                          .white
-                          .fontFamily(semibold)
-                          .make(),
-                    )
                   ],
                 ),
               );

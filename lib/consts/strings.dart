@@ -48,3 +48,8 @@ const wishlist = "My Wishlist",
     orders = "My Orders",
     messages = "Messages",
     editProfile = "Edit Profile";
+
+const paytm = "Paytm",
+    phonepe = "Phonepe",
+    gpay = "GPay",
+    cod = "Cash on delivery";

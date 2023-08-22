@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/models/category_model.dart';
 import 'package:flutter/services.dart';
@@ -18,16 +19,36 @@ class ProductController extends GetxController {
     }
   }
 
-  addToCart({title, tprice, qty, sellername, imageUrl, context}) async {
+  addToCart(
+      {title, tprice, qty, sellername, imageUrl, context, vendorId}) async {
     await firestore.collection(cartCollections).doc().set({
       'title': title,
       'tprice': tprice,
       'quantity': qty,
+      'vendor_id': vendorId,
       'sellername': sellername,
       'img': imageUrl,
       'added_by': currentUser!.uid,
     }).catchError((error) {
       VxToast.show(context, msg: error.toString());
     });
+  }
+
+  addToWishlist(docId, context) async {
+    await firestore.collection(productCollections).doc(docId).set({
+      'p_wishlist': FieldValue.arrayUnion([
+        currentUser!.uid,
+      ])
+    }, SetOptions(merge: true));
+    VxToast.show(context, msg: "Item added to wishlist");
+  }
+
+  removeFromWishlist(docId, context) async {
+    await firestore.collection(productCollections).doc(docId).set({
+      'p_wishlist': FieldValue.arrayRemove([
+        currentUser!.uid,
+      ])
+    }, SetOptions(merge: true));
+    VxToast.show(context, msg: "Item removed from wishlist");
   }
 }
