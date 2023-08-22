@@ -3,8 +3,11 @@ import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/consts/lists.dart';
 import 'package:emart_app/controllers/profile_controller.dart';
 import 'package:emart_app/services/firebase_services.dart';
+import 'package:emart_app/views/chat_screen/messages_screen.dart';
+import 'package:emart_app/views/orders_screen/orders_screen.dart';
 import 'package:emart_app/views/profile_screen.dart/components/details_card.dart';
 import 'package:emart_app/views/splash_screen/splash_screen.dart';
+import 'package:emart_app/views/wishlist_screen/wishlist_screen.dart';
 import 'package:emart_app/widgets/bg_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -135,35 +138,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     shrinkWrap: true,
                     itemBuilder: (BuildContext context, int index) {
                       return ListTile(
-                          leading: Image.asset(
-                            profileButtonIcon[index],
-                            width: 22,
-                            color: Colors.black87,
-                          ),
-                          title: profileButtonList[index]
-                              .text
-                              .fontFamily(semibold)
-                              .color(darkFontGrey)
-                              .make(),
-                          onTap: index == 3
-                              ? () {
-                                  profileController.nameController.text =
-                                      data['name'];
-                                  profileController.emailController.text =
-                                      data['email'];
-                                  Get.to(() => EditProfileScreen(data: data));
-                                }
-                              : index == 2
-                                  ? () {
-                                      // messages
-                                    }
-                                  : index == 1
-                                      ? () {
-                                          //my wishlist
-                                        }
-                                      : () {
-                                          // my orders
-                                        });
+                        leading: Image.asset(
+                          profileButtonIcon[index],
+                          width: 22,
+                          color: Colors.black87,
+                        ),
+                        title: profileButtonList[index]
+                            .text
+                            .fontFamily(semibold)
+                            .color(darkFontGrey)
+                            .make(),
+                        onTap: () {
+                          switch (index) {
+                            case 0:
+                              Get.to(() => const OrderScreen());
+                              break;
+                            case 1:
+                              Get.to(() => const WishlistScreen());
+                              break;
+                            case 2:
+                              Get.to(() => const MessagesScreen());
+                              break;
+                            case 3:
+                              profileController.nameController.text =
+                                  data['name'];
+                              profileController.emailController.text =
+                                  data['email'];
+                              Get.to(() => EditProfileScreen(data: data));
+                              break;
+                          }
+                        },
+                      );
                     },
                     separatorBuilder: (context, index) {
                       return const Divider(color: lightGrey);
