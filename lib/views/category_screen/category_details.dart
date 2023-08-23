@@ -9,62 +9,84 @@ import 'package:get/get.dart';
 
 import '../../widgets/loading_indicator.dart';
 
-class CategoryDetails extends StatelessWidget {
+class CategoryDetails extends StatefulWidget {
   final String title;
   const CategoryDetails({super.key, required this.title});
 
   @override
+  State<CategoryDetails> createState() => _CategoryDetailsState();
+}
+
+class _CategoryDetailsState extends State<CategoryDetails> {
+  @override
+  void initState() {
+    switchCategory(widget.title);
+    super.initState();
+  }
+
+  switchCategory(title) {
+    if (controller.subcat.contains(title)) {
+      productMethod = FirestoreServices.getCategoryProducts(title);
+    } else {
+      productMethod = FirestoreServices.getProducts(title);
+    }
+  }
+
+  var controller = Get.find<ProductController>();
+  dynamic productMethod;
+  @override
   Widget build(BuildContext context) {
-    var controller = Get.find<ProductController>();
     return bgWidget(
         child: Scaffold(
             appBar: AppBar(
-              title: title.text.fontFamily(bold).white.make(),
+              title: widget.title.text.fontFamily(bold).white.make(),
               iconTheme: const IconThemeData(color: whiteColor),
             ),
-            body: StreamBuilder(
-                stream: FirestoreServices.getProducts(title),
-                builder: (BuildContext context,
-                    AsyncSnapshot<QuerySnapshot> snapshot) {
-                  if (!snapshot.hasData) {
-                    return const Center(child: LoadingIndicator());
-                  } else if (snapshot.data!.docs.isEmpty) {
-                    return Center(
-                      child: "No products available"
-                          .text
-                          .color(darkFontGrey)
-                          .make(),
-                    );
-                  } else {
-                    var data = snapshot.data!.docs;
-                    return Container(
-                      padding: const EdgeInsets.all(12),
-                      child: Column(
-                        children: [
-                          SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            physics: const BouncingScrollPhysics(),
-                            child: Row(
-                              children: List.generate(
-                                  controller.subcat.length,
-                                  (index) => "${data[0]['p_category']}"
-                                      .text
-                                      .size(12)
-                                      .fontFamily(semibold)
-                                      .color(darkFontGrey)
-                                      .makeCentered()
-                                      .box
-                                      .rounded
-                                      .white
-                                      .size(150, 60)
-                                      .margin(const EdgeInsets.symmetric(
-                                          horizontal: 4))
-                                      .make()),
-                            ),
-                          ),
-                          20.heightBox,
-                          // items Container
-                          Expanded(
+            body: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
+                  child: Row(
+                    children: List.generate(
+                        controller.subcat.length,
+                        (index) => "${controller.subcat[index]}"
+                                .text
+                                .size(12)
+                                .fontFamily(semibold)
+                                .color(darkFontGrey)
+                                .makeCentered()
+                                .box
+                                .rounded
+                                .white
+                                .size(150, 60)
+                                .margin(
+                                    const EdgeInsets.symmetric(horizontal: 4))
+                                .make()
+                                .onTap(() {
+                              switchCategory("${controller.subcat[index]}");
+                              setState(() {});
+                            })),
+                  ),
+                ),
+                20.heightBox,
+                StreamBuilder(
+                    // stream: FirestoreServices.getProducts(widget.title),
+                    stream: productMethod,
+                    builder: (BuildContext context,
+                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (!snapshot.hasData) {
+                        return const Center(child: LoadingIndicator());
+                      } else if (snapshot.data!.docs.isEmpty) {
+                        return Center(
+                          child: "No products available".text.white.make(),
+                        );
+                      } else {
+                        var data = snapshot.data!.docs;
+                        return Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(12),
                             child: GridView.builder(
                                 shrinkWrap: true,
                                 itemCount: data.length,
@@ -119,10 +141,10 @@ class CategoryDetails extends StatelessWidget {
                                   });
                                 }),
                           ),
-                        ],
-                      ),
-                    );
-                  }
-                })));
+                        );
+                      }
+                    }),
+              ],
+            )));
   }
 }

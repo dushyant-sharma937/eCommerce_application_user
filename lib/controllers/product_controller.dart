@@ -9,6 +9,7 @@ class ProductController extends GetxController {
   var quantity = 0.obs;
   var isFav = false.obs;
   getSubCategories({categoryTitle}) async {
+    subcat.clear();
     var data = await rootBundle.loadString("lib/services/category_model.json");
     var decoded = categoryModelFromJson(data);
     var s = decoded.categories

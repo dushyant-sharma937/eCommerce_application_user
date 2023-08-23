@@ -28,7 +28,50 @@ class WishlistScreen extends StatelessWidget {
                 .color(darkFontGrey)
                 .makeCentered();
           } else {
-            return Container();
+            var data = snapshot.data!.docs;
+            return Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: data.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ListTile(
+                            leading: Image.network(
+                              "${data[index]['p_imgs'][0]}",
+                              height: 50,
+                              width: 50,
+                              fit: BoxFit.cover,
+                            ),
+                            title: "${data[index]['p_name']}"
+                                .text
+                                .fontFamily(semibold)
+                                .make(),
+                            subtitle: "${data[index]['p_price']}"
+                                .numCurrency
+                                .text
+                                .color(Colors.red)
+                                .fontFamily(semibold)
+                                .make(),
+                            trailing: IconButton(
+                              onPressed: () async {
+                                await firestore
+                                    .collection(productCollections)
+                                    .doc(data[index].id)
+                                    .set({
+                                  'p_wishlist':
+                                      FieldValue.arrayRemove([currentUser!.uid])
+                                }, SetOptions(merge: true));
+                              },
+                              icon: const Icon(
+                                Icons.favorite,
+                                color: Colors.red,
+                              ),
+                            ));
+                      }),
+                ),
+              ],
+            );
           }
         },
       ),

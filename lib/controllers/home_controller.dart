@@ -1,4 +1,5 @@
 import 'package:emart_app/consts/consts.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
@@ -12,6 +13,8 @@ class HomeController extends GetxController {
 
   var username = "";
 
+  var searchController = TextEditingController();
+
   getUserName() async {
     var s = await firestore
         .collection(userCollections)
@@ -24,6 +27,5 @@ class HomeController extends GetxController {
     });
 
     username = s;
-    print(username);
   }
 }

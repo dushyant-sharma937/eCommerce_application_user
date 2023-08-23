@@ -9,6 +9,7 @@ import 'package:emart_app/views/profile_screen.dart/components/details_card.dart
 import 'package:emart_app/views/splash_screen/splash_screen.dart';
 import 'package:emart_app/views/wishlist_screen/wishlist_screen.dart';
 import 'package:emart_app/widgets/bg_widgets.dart';
+import 'package:emart_app/widgets/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -112,26 +113,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   20.heightBox,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      detailsCard(
-                        count: data['cart_count'],
-                        title: "in your cart",
-                        width: context.screenWidth / 3.4,
-                      ),
-                      detailsCard(
-                        count: data['wishlist_count'],
-                        title: "in your wishlist",
-                        width: context.screenWidth / 3.4,
-                      ),
-                      detailsCard(
-                        count: data['order_count'],
-                        title: "your orders",
-                        width: context.screenWidth / 3.4,
-                      ),
-                    ],
-                  ),
+
+                  FutureBuilder(
+                      future: FirestoreServices.getCount(),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        if (!snapshot.hasData) {
+                          return const Center(
+                            child: LoadingIndicator(),
+                          );
+                        } else {
+                          var dataCount = snapshot.data;
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              detailsCard(
+                                count: dataCount[0].toString(),
+                                title: "in your cart",
+                                width: context.screenWidth / 3.4,
+                              ),
+                              detailsCard(
+                                count: dataCount[1].toString(),
+                                title: "in your wishlist",
+                                width: context.screenWidth / 3.4,
+                              ),
+                              detailsCard(
+                                count: dataCount[2].toString(),
+                                title: "your orders",
+                                width: context.screenWidth / 3.4,
+                              ),
+                            ],
+                          );
+                        }
+                      }),
 
                   // buttons section
                   ListView.separated(

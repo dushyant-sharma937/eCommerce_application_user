@@ -1,14 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/consts/lists.dart';
+import 'package:emart_app/controllers/home_controller.dart';
+import 'package:emart_app/services/firebase_services.dart';
+import 'package:emart_app/views/category_screen/item_details.dart';
 import 'package:emart_app/views/home_screen/components/featured_button.dart';
+import 'package:emart_app/views/home_screen/components/search_screen.dart';
 import 'package:emart_app/widgets/home_buttons.dart';
+import 'package:emart_app/widgets/loading_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.find<HomeController>();
     return Container(
       color: lightGrey,
       padding: const EdgeInsets.all(12),
@@ -17,23 +25,35 @@ class HomeScreen extends StatelessWidget {
       child: SafeArea(
           child: Column(
         children: [
+          // search bar
           Container(
             height: 60,
             alignment: Alignment.center,
             color: lightGrey,
             child: TextFormField(
-              decoration: const InputDecoration(
+              controller: controller.searchController,
+              decoration: InputDecoration(
                 border: InputBorder.none,
                 fillColor: whiteColor,
                 filled: true,
                 hintText: searchAnything,
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                   color: Colors.black54,
                 ),
-                suffixIcon: Icon(Icons.search),
+                suffixIcon: const Icon(Icons.search).onTap(() {
+                  if (controller.searchController.text
+                      .trim()
+                      .isNotEmptyAndNotNull) {
+                    Get.to(() => SearchScreen(
+                          searchText: controller.searchController.text.trim(),
+                        ));
+                    controller.searchController.clear();
+                  }
+                }),
               ),
             ),
           ),
+
           10.heightBox,
           Expanded(
             child: SingleChildScrollView(
@@ -163,40 +183,66 @@ class HomeScreen extends StatelessWidget {
                         10.heightBox,
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: List.generate(
-                                6,
-                                (index) => Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Image.asset(
-                                          imgP1,
-                                          width: 150,
-                                          fit: BoxFit.cover,
-                                        ),
-                                        10.heightBox,
-                                        "Laptop 8GB/512GB"
-                                            .text
-                                            .fontFamily(semibold)
-                                            .color(darkFontGrey)
-                                            .make(),
-                                        10.heightBox,
-                                        "\$600"
-                                            .text
-                                            .color(redColor)
-                                            .fontFamily(bold)
-                                            .make(),
-                                      ],
-                                    )
-                                        .box
-                                        .margin(const EdgeInsets.symmetric(
-                                            horizontal: 4))
-                                        .white
-                                        .roundedSM
-                                        .padding(const EdgeInsets.all(8))
-                                        .make()),
-                          ),
+                          child: StreamBuilder(
+                              stream: FirestoreServices.getFeaturedProducts(),
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                                if (!snapshot.hasData) {
+                                  return const Center(
+                                      child: LoadingIndicator());
+                                } else if (snapshot.data!.docs.isEmpty) {
+                                  return "No featured products are available right now"
+                                      .text
+                                      .white
+                                      .make();
+                                } else {
+                                  var featuredProductData = snapshot.data!.docs;
+                                  return Row(
+                                    children: List.generate(
+                                        featuredProductData.length,
+                                        (index) => Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Image.network(
+                                                  "${featuredProductData[index]['p_imgs'][0]}",
+                                                  width: 150,
+                                                  height: 120,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                                10.heightBox,
+                                                "${featuredProductData[index]['p_name']}"
+                                                    .text
+                                                    .fontFamily(semibold)
+                                                    .color(darkFontGrey)
+                                                    .make(),
+                                                10.heightBox,
+                                                "${featuredProductData[index]['p_price']}"
+                                                    .text
+                                                    .color(redColor)
+                                                    .fontFamily(bold)
+                                                    .make(),
+                                              ],
+                                            )
+                                                .box
+                                                .margin(
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 4))
+                                                .white
+                                                .roundedSM
+                                                .padding(
+                                                    const EdgeInsets.all(8))
+                                                .make()
+                                                .onTap(() {
+                                              Get.to(() => ItemDetails(
+                                                  title:
+                                                      "${featuredProductData[index]['p_name']}",
+                                                  data: featuredProductData[
+                                                      index]));
+                                            })),
+                                  );
+                                }
+                              }),
                         ),
                       ],
                     ),
@@ -224,47 +270,64 @@ class HomeScreen extends StatelessWidget {
 
                   // all products section
                   20.heightBox,
-                  GridView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: 6,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 12,
-                              mainAxisSpacing: 12,
-                              mainAxisExtent: 300),
-                      itemBuilder: (context, index) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              imgP5,
-                              width: 200,
-                              height: 200,
-                              fit: BoxFit.cover,
-                            ),
-                            const Spacer(),
-                            "Women Gucci Bag"
-                                .text
-                                .fontFamily(semibold)
-                                .color(darkFontGrey)
-                                .make(),
-                            10.heightBox,
-                            "\$6000000"
-                                .text
-                                .color(redColor)
-                                .fontFamily(bold)
-                                .make(),
-                          ],
-                        )
-                            .box
-                            .margin(const EdgeInsets.symmetric(horizontal: 4))
-                            .white
-                            .roundedSM
-                            .padding(const EdgeInsets.all(12))
-                            .make();
-                      }),
+                  StreamBuilder(
+                      stream: FirestoreServices.getAllProducts(),
+                      builder: ((BuildContext context,
+                          AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (!snapshot.hasData) {
+                          return const Center(child: LoadingIndicator());
+                        } else {
+                          var allProduct = snapshot.data!.docs;
+                          return GridView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: allProduct.length,
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      crossAxisSpacing: 12,
+                                      mainAxisSpacing: 12,
+                                      mainAxisExtent: 300),
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Image.network(
+                                      allProduct[index]['p_imgs'][0],
+                                      width: 200,
+                                      height: 200,
+                                      fit: BoxFit.fitWidth,
+                                    ),
+                                    const Spacer(),
+                                    "${allProduct[index]['p_name']}"
+                                        .text
+                                        .fontFamily(semibold)
+                                        .color(darkFontGrey)
+                                        .make(),
+                                    10.heightBox,
+                                    "${allProduct[index]['p_price']}"
+                                        .numCurrency
+                                        .text
+                                        .color(redColor)
+                                        .fontFamily(bold)
+                                        .make(),
+                                  ],
+                                )
+                                    .box
+                                    .margin(const EdgeInsets.symmetric(
+                                        horizontal: 4))
+                                    .white
+                                    .roundedSM
+                                    .padding(const EdgeInsets.all(12))
+                                    .make()
+                                    .onTap(() {
+                                  Get.to(() => ItemDetails(
+                                      title: allProduct[index]['p_name'],
+                                      data: allProduct[index]));
+                                });
+                              });
+                        }
+                      }))
                 ],
               ),
             ),

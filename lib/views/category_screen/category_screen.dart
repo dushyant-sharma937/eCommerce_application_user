@@ -18,6 +18,7 @@ class CategoryScreen extends StatelessWidget {
         title: "Categories".text.fontFamily(bold).white.make(),
         backgroundColor: const Color.fromARGB(0, 0, 0, 0),
         iconTheme: const IconThemeData(color: whiteColor),
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         padding: const EdgeInsets.all(12),
