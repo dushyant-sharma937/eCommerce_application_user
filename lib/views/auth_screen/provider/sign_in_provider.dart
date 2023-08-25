@@ -2,18 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SignInProvider extends ChangeNotifier {
-  // instance of firebaseauth, facebook and google
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   bool _isSignedIn = false;
   bool get isSignedIn => _isSignedIn;
 
   // has error, errorCode, provider, id, email, name, imageUrl
-  bool _hasError = false;
+  final bool _hasError = false;
   bool get hasError => _hasError;
 
   String? _errorCode;

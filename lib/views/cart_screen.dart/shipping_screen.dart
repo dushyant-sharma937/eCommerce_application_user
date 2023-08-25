@@ -62,62 +62,62 @@ class ShippingScreen extends StatelessWidget {
                 ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            customTextField(
-                hint: "Address",
-                isPass: false,
-                title: "Address",
-                controller: controller.addressController),
-            20.heightBox,
-            customTextField(
-                hint: "City",
-                isPass: false,
-                title: "City",
-                controller: controller.cityController),
-            20.heightBox,
-            customTextField(
-                hint: "State",
-                isPass: false,
-                title: "State",
-                controller: controller.stateController),
-            20.heightBox,
-            customTextField(
-                hint: "Pin Code",
-                isPass: false,
-                title: "Pin Code",
-                type: TextInputType.number,
-                controller: controller.pinCodeController),
-            20.heightBox,
-            customTextField(
-                hint: "Mobile Number",
-                isPass: false,
-                title: "Mobile Number",
-                type: TextInputType.number,
-                controller: controller.mobileController),
-            const Spacer(),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: lightGolden,
+      body: SingleChildScrollView(
+        physics: const NeverScrollableScrollPhysics(),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              customTextField(
+                  hint: "Address",
+                  isPass: false,
+                  title: "Address",
+                  controller: controller.addressController),
+              20.heightBox,
+              customTextField(
+                  hint: "City",
+                  isPass: false,
+                  title: "City",
+                  controller: controller.cityController),
+              20.heightBox,
+              customTextField(
+                  hint: "State",
+                  isPass: false,
+                  title: "State",
+                  controller: controller.stateController),
+              20.heightBox,
+              customTextField(
+                  hint: "Pin Code",
+                  isPass: false,
+                  title: "Pin Code",
+                  type: TextInputType.number,
+                  controller: controller.pinCodeController),
+              20.heightBox,
+              customTextField(
+                  hint: "Mobile Number",
+                  isPass: false,
+                  title: "Mobile Number",
+                  type: TextInputType.number,
+                  controller: controller.mobileController),
+              // const Spacer(),
+              20.heightBox,
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: lightGolden,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    1.widthBox,
+                    "Payment:".text.fontFamily(semibold).size(18).make(),
+                    const DropdownDemo(),
+                    1.widthBox,
+                  ],
+                ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  1.widthBox,
-                  "Select payment option:"
-                      .text
-                      .fontFamily(semibold)
-                      .size(18)
-                      .make(),
-                  const DropdownDemo(),
-                  1.widthBox,
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

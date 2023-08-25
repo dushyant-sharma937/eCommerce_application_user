@@ -5,11 +5,9 @@ import 'package:emart_app/controllers/profile_controller.dart';
 import 'package:emart_app/services/firebase_services.dart';
 import 'package:emart_app/views/chat_screen/messages_screen.dart';
 import 'package:emart_app/views/orders_screen/orders_screen.dart';
-import 'package:emart_app/views/profile_screen.dart/components/details_card.dart';
 import 'package:emart_app/views/splash_screen/splash_screen.dart';
 import 'package:emart_app/views/wishlist_screen/wishlist_screen.dart';
 import 'package:emart_app/widgets/bg_widgets.dart';
-import 'package:emart_app/widgets/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -24,9 +22,9 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  var profileController = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
-    var profileController = Get.put(ProfileController());
     final sp = context.watch<SignInProvider>();
 
     return bgWidget(
@@ -41,6 +39,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         valueColor: AlwaysStoppedAnimation(redColor)));
               } else if (snapshot.data!.docs.isNotEmpty) {
                 var data = snapshot.data!.docs[0];
+                print(data.toString() + "wow");
                 return SafeArea(
                     child: Column(children: [
                   //user details section
@@ -114,37 +113,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   20.heightBox,
 
-                  FutureBuilder(
-                      future: FirestoreServices.getCount(),
-                      builder: (BuildContext context, AsyncSnapshot snapshot) {
-                        if (!snapshot.hasData) {
-                          return const Center(
-                            child: LoadingIndicator(),
-                          );
-                        } else {
-                          var dataCount = snapshot.data;
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              detailsCard(
-                                count: dataCount[0].toString(),
-                                title: "in your cart",
-                                width: context.screenWidth / 3.4,
-                              ),
-                              detailsCard(
-                                count: dataCount[1].toString(),
-                                title: "in your wishlist",
-                                width: context.screenWidth / 3.4,
-                              ),
-                              detailsCard(
-                                count: dataCount[2].toString(),
-                                title: "your orders",
-                                width: context.screenWidth / 3.4,
-                              ),
-                            ],
-                          );
-                        }
-                      }),
+                  // FutureBuilder(
+                  //     future: FirestoreServices.getCount(),
+                  //     builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  //       if (!snapshot.hasData) {
+                  //         return const Center(
+                  //           child: LoadingIndicator(),
+                  //         );
+                  //       } else {
+                  //         var dataCount = snapshot.data;
+                  //         return Row(
+                  //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //           children: [
+                  //             detailsCard(
+                  //               count: dataCount[0].toString(),
+                  //               title: "in your cart",
+                  //               width: context.screenWidth / 3.4,
+                  //             ),
+                  //             detailsCard(
+                  //               count: dataCount[1].toString(),
+                  //               title: "in your wishlist",
+                  //               width: context.screenWidth / 3.4,
+                  //             ),
+                  //             detailsCard(
+                  //               count: dataCount[2].toString(),
+                  //               title: "your orders",
+                  //               width: context.screenWidth / 3.4,
+                  //             ),
+                  //           ],
+                  //         );
+                  //       }
+                  //     }),
 
                   // buttons section
                   ListView.separated(
@@ -196,7 +195,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       .shadowSm
                       .make()
                       .box
-                      .color(redColor)
+                      .color(redColor.withOpacity(0.1))
                       .make(),
                 ]));
               } else {

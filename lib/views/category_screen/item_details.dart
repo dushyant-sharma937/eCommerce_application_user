@@ -84,6 +84,20 @@ class ItemDetails extends StatelessWidget {
                           .make(),
 
                       10.heightBox,
+                      "Effective price: ${data['p_price']}"
+                          .text
+                          .color(redColor)
+                          .fontFamily(bold)
+                          .size(18)
+                          .make(),
+                      10.heightBox,
+                      "Mrp: 16000"
+                          .text
+                          .color(Colors.red)
+                          .fontFamily(semibold)
+                          .size(14)
+                          .make(),
+                      10.heightBox,
                       VxRating(
                         value: double.parse(data['p_rating']),
                         onRatingUpdate: (value) {},
@@ -95,13 +109,6 @@ class ItemDetails extends StatelessWidget {
                         isSelectable: false,
                         stepInt: false,
                       ),
-                      10.heightBox,
-                      "${data['p_price']}"
-                          .text
-                          .color(redColor)
-                          .fontFamily(bold)
-                          .size(18)
-                          .make(),
 
                       10.heightBox,
                       Row(
@@ -150,30 +157,6 @@ class ItemDetails extends StatelessWidget {
                       Obx(
                         () => Column(
                           children: [
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 100,
-                                  child: "Color: "
-                                      .text
-                                      .color(darkFontGrey)
-                                      .fontFamily(bold)
-                                      .make(),
-                                ),
-                                Row(
-                                  children: List.generate(
-                                      data['p_colors'].length,
-                                      (index) => VxBox()
-                                          .size(40, 40)
-                                          .roundedFull
-                                          .color(Color(data['p_colors'][index]))
-                                          .margin(const EdgeInsets.symmetric(
-                                              horizontal: 6))
-                                          .make()),
-                                )
-                              ],
-                            ).box.padding(const EdgeInsets.all(8)).make(),
-
                             // quantity row
                             Row(
                               children: [
@@ -216,7 +199,7 @@ class ItemDetails extends StatelessWidget {
                                         .color(fontGrey)
                                         .make(),
                                   ],
-                                ),
+                                )
                               ],
                             ).box.padding(const EdgeInsets.all(8)).make(),
 

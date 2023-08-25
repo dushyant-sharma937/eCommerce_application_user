@@ -49,7 +49,7 @@ const icTwitterLogo = "assets/icons/twitter_logo.png";
 const icWallet = "assets/icons/wallet.png";
 const icWhiteTick = "assets/icons/white_tick.png";
 const icWholeSale = "assets/icons/wholesale.png";
-const icSplashBgCrop = "assets/icons/splash_bg.png";
+const icSplashBgCrop = "assets/icons/splash.png";
 
 //images
 

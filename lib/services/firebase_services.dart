@@ -57,26 +57,26 @@ class FirestoreServices {
         .snapshots();
   }
 
-  static getCount() async {
-    var res = await Future.wait([
-      firestore
-          .collection(cartCollections)
-          .where('added_by', isEqualTo: currentUser!.uid)
-          .get()
-          .then((value) => value.docs.length),
-      firestore
-          .collection(chatCollections)
-          .where('fromId', isEqualTo: currentUser!.uid)
-          .get()
-          .then((value) => value.docs.length),
-      firestore
-          .collection(productCollections)
-          .where('p_wishlist', arrayContains: currentUser!.uid)
-          .get()
-          .then((value) => value.docs.length),
-    ]);
-    return res;
-  }
+  // static getCount() async {
+  //   var res = await Future.wait([
+  //     firestore
+  //         .collection(cartCollections)
+  //         .where('added_by', isEqualTo: currentUser!.uid)
+  //         .get()
+  //         .then((value) => value.docs.length),
+  //     firestore
+  //         .collection(chatCollections)
+  //         .where('fromId', isEqualTo: currentUser!.uid)
+  //         .get()
+  //         .then((value) => value.docs.length),
+  //     firestore
+  //         .collection(productCollections)
+  //         .where('p_wishlist', arrayContains: currentUser!.uid)
+  //         .get()
+  //         .then((value) => value.docs.length),
+  //   ]);
+  //   return res;
+  // }
 
   static getAllProducts() {
     return firestore.collection(productCollections).snapshots();

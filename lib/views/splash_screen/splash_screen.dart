@@ -15,7 +15,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   void changeScreen() {
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 5), () {
       auth.authStateChanges().listen((User? user) {
         if (user == null && mounted) {
           Get.to(() => const PhoneAuthScreen());
