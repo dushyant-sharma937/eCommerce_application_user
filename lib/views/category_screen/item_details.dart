@@ -34,23 +34,23 @@ class ItemDetails extends StatelessWidget {
                   icon: const Icon(
                     Icons.share,
                   )),
-              Obx(
-                () => IconButton(
-                    onPressed: () {
-                      if (controller.isFav.value) {
-                        controller.removeFromWishlist(data.id, context);
-                      } else {
-                        controller.addToWishlist(data.id, context);
-                      }
-                      controller.isFav.value = !controller.isFav.value;
-                    },
-                    icon: Icon(
-                      controller.isFav.value
-                          ? Icons.favorite
-                          : Icons.favorite_outline_rounded,
-                      color: controller.isFav.value ? Colors.red : Colors.black,
-                    )),
-              ),
+              IconButton(
+                  onPressed: () async {
+                    if (controller.isFav.value) {
+                      await controller.removeFromWishlist(data.id, context);
+                    } else {
+                      await controller.addToWishlist(data.id, context);
+                    }
+                  },
+                  icon: Icon(
+                    // controller.isFav.value
+                    data['p_wishlist'].length > 0
+                        ? Icons.favorite
+                        : Icons.favorite_outline_rounded,
+                    color: data['p_wishlist'].length > 0
+                        ? Colors.red
+                        : Colors.black,
+                  )),
             ]),
         body: Column(
           children: [

@@ -8,6 +8,7 @@ class ProductController extends GetxController {
   var subcat = [];
   var quantity = 0.obs;
   var isFav = false.obs;
+
   getSubCategories({categoryTitle}) async {
     subcat.clear();
     var data = await rootBundle.loadString("lib/services/category_model.json");
@@ -41,6 +42,7 @@ class ProductController extends GetxController {
         currentUser!.uid,
       ])
     }, SetOptions(merge: true));
+    isFav.value = true;
     VxToast.show(context, msg: "Item added to wishlist");
   }
 
@@ -50,6 +52,7 @@ class ProductController extends GetxController {
         currentUser!.uid,
       ])
     }, SetOptions(merge: true));
+    isFav.value = false;
     VxToast.show(context, msg: "Item removed from wishlist");
   }
 }
