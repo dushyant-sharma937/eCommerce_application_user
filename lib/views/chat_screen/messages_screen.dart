@@ -28,38 +28,39 @@ class MessagesScreen extends StatelessWidget {
           } else {
             var data = snapshot.data!.docs;
             return Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(Dimensions.eightH),
               child: Column(
                 children: [
                   Expanded(
-                      child: ListView.builder(
-                          itemCount: data.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Card(
-                              child: ListTile(
-                                onTap: () {
-                                  Get.to(() => const ChatScreen(), arguments: [
-                                    data[index]['friend_name'],
-                                    data[index]['toId'],
-                                  ]);
-                                },
-                                leading: const CircleAvatar(
-                                  backgroundColor: redColor,
-                                  child: Icon(
-                                    Icons.person,
-                                    color: Colors.white,
-                                  ),
+                    child: ListView.builder(
+                        itemCount: data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Card(
+                            child: ListTile(
+                              onTap: () {
+                                Get.to(() => const ChatScreen(), arguments: [
+                                  data[index]['friend_name'],
+                                  data[index]['toId'],
+                                ]);
+                              },
+                              leading: const CircleAvatar(
+                                backgroundColor: redColor,
+                                child: Icon(
+                                  Icons.person,
+                                  color: Colors.white,
                                 ),
-                                title: "${data[index]['friend_name']}"
-                                    .text
-                                    .fontFamily(semibold)
-                                    .color(darkFontGrey)
-                                    .make(),
-                                subtitle:
-                                    "${data[index]['last_msg']}".text.make(),
                               ),
-                            );
-                          }))
+                              title: "${data[index]['friend_name']}"
+                                  .text
+                                  .fontFamily(semibold)
+                                  .color(darkFontGrey)
+                                  .make(),
+                              subtitle:
+                                  "${data[index]['last_msg']}".text.make(),
+                            ),
+                          );
+                        }),
+                  )
                 ],
               ),
             );

@@ -32,7 +32,7 @@ class OrderScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return ListTile(
                     leading: SizedBox(
-                      width: 100,
+                      width: Dimensions.hundredW,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -49,8 +49,8 @@ class OrderScreen extends StatelessWidget {
                             child: Image.network(
                               "${data[index]['orders'][0]['img']}",
                               fit: BoxFit.fill,
-                              width: 80,
-                              height: 80,
+                              width: Dimensions.hundredW * 0.8,
+                              height: Dimensions.hundredH * 0.8,
                             ),
                           ),
                         ],

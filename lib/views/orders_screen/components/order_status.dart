@@ -4,24 +4,28 @@ import 'package:flutter/material.dart';
 Widget orderStatus({icon, color, title, showDone}) {
   return ListTile(
     tileColor: Colors.grey.withOpacity(0.1),
-    contentPadding: const EdgeInsets.only(top: 8, bottom: 8, left: 8, right: 8),
+    contentPadding: EdgeInsets.only(
+        top: Dimensions.eightH,
+        bottom: Dimensions.eightH,
+        left: Dimensions.eightW,
+        right: Dimensions.eightW),
     leading: Icon(
       icon,
       color: color,
-      size: 30,
+      size: Dimensions.tenH * 3,
     )
         .box
         .border(color: color)
         .roundedSM
-        .padding(const EdgeInsets.all(4))
+        .padding(EdgeInsets.all(Dimensions.twoH * 2))
         .make(),
     trailing: SizedBox(
-      height: 100,
-      width: 120,
+      height: Dimensions.hundredH,
+      width: Dimensions.hundredW * 1.2,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          "$title".text.color(darkFontGrey).size(18).make(),
+          "$title".text.color(darkFontGrey).size(Dimensions.font18).make(),
           showDone
               ? const Icon(
                   Icons.done,

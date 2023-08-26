@@ -21,26 +21,26 @@ class CategoryScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
       ),
       body: Container(
-        padding: const EdgeInsets.all(12),
+        padding: EdgeInsets.all(Dimensions.twelveH),
         child: GridView.builder(
             itemCount: 9,
             shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 mainAxisSpacing: 8,
                 crossAxisSpacing: 8,
-                mainAxisExtent: 200),
+                mainAxisExtent: Dimensions.hundredH * 2),
             itemBuilder: (context, index) {
               return Column(
                 children: [
-                  10.heightBox,
+                  Dimensions.tenH.heightBox,
                   Image.asset(
                     categoryImages[index],
-                    height: 120,
-                    width: 200,
+                    height: Dimensions.hundredH * 1.2,
+                    width: Dimensions.hundredW * 2,
                     fit: BoxFit.cover,
                   ),
-                  10.heightBox,
+                  Dimensions.tenH.heightBox,
                   categoriesList[index]
                       .text
                       .color(darkFontGrey)

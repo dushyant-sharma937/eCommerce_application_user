@@ -55,11 +55,9 @@ class SignInProvider extends ChangeNotifier {
         await FirebaseFirestore.instance.collection('users').doc(_uid).get();
     if (snap.exists) {
       VxToast.show(context, msg: "Signed in as existing user");
-      print('Existing user');
       return true;
     } else {
       VxToast.show(context, msg: "Signed in as new user");
-      print('New user');
       return false;
     }
   }

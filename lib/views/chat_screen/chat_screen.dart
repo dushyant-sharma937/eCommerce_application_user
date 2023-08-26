@@ -24,7 +24,7 @@ class ChatScreen extends StatelessWidget {
             .make(),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(12),
+        padding: EdgeInsets.all(Dimensions.font12),
         child: Column(
           children: [
             Obx(
@@ -63,16 +63,17 @@ class ChatScreen extends StatelessWidget {
                       ),
                     ),
             ),
-            10.heightBox,
+            Dimensions.tenH.heightBox,
             Row(
               children: [
                 Expanded(
                     child: TextFormField(
                   controller: controller.msgController,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: "Send a message to the Seller",
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(Dimensions.twentyH))),
                   ),
                 )),
                 IconButton(
@@ -88,8 +89,10 @@ class ChatScreen extends StatelessWidget {
               ],
             )
                 .box
-                .margin(const EdgeInsets.symmetric(vertical: 4, horizontal: 8))
-                .height(60)
+                .margin(EdgeInsets.symmetric(
+                    vertical: Dimensions.twoH * 2,
+                    horizontal: Dimensions.eightW))
+                .height(Dimensions.tenH * 6)
                 .make(),
           ],
         ),

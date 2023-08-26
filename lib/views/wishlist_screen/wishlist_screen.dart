@@ -39,8 +39,8 @@ class WishlistScreen extends StatelessWidget {
                         return ListTile(
                             leading: Image.network(
                               "${data[index]['p_imgs'][0]}",
-                              height: 50,
-                              width: 50,
+                              height: Dimensions.hundredH * 0.5,
+                              width: Dimensions.hundredW * 0.5,
                               fit: BoxFit.cover,
                             ),
                             title: "${data[index]['p_name']}"

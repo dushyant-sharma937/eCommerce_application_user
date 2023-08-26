@@ -26,7 +26,7 @@ class ShippingScreen extends StatelessWidget {
       ),
       bottomNavigationBar: Obx(
         () => SizedBox(
-          height: 60,
+          height: Dimensions.tenH * 6,
           child: controller.orderPlaced.value
               ? const Center(child: LoadingIndicator())
               : MaterialButton(
@@ -49,13 +49,13 @@ class ShippingScreen extends StatelessWidget {
                   },
                   color: Colors.red,
                   minWidth: context.width * 0.9,
-                  height: 60,
+                  height: Dimensions.tenH * 6,
                   elevation: 2,
                   shape: ContinuousRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
+                      borderRadius: BorderRadius.circular(Dimensions.tenH)),
                   child: "Place order"
                       .text
-                      .size(18)
+                      .size(Dimensions.font18)
                       .white
                       .fontFamily(semibold)
                       .make(),
@@ -65,7 +65,7 @@ class ShippingScreen extends StatelessWidget {
       body: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(Dimensions.sixteenH),
           child: Column(
             children: [
               customTextField(
@@ -73,26 +73,26 @@ class ShippingScreen extends StatelessWidget {
                   isPass: false,
                   title: "Address",
                   controller: controller.addressController),
-              20.heightBox,
+              Dimensions.twentyH.heightBox,
               customTextField(
                   hint: "City",
                   isPass: false,
                   title: "City",
                   controller: controller.cityController),
-              20.heightBox,
+              Dimensions.twentyH.heightBox,
               customTextField(
                   hint: "State",
                   isPass: false,
                   title: "State",
                   controller: controller.stateController),
-              20.heightBox,
+              Dimensions.twentyH.heightBox,
               customTextField(
                   hint: "Pin Code",
                   isPass: false,
                   title: "Pin Code",
                   type: TextInputType.number,
                   controller: controller.pinCodeController),
-              20.heightBox,
+              Dimensions.twentyH.heightBox,
               customTextField(
                   hint: "Mobile Number",
                   isPass: false,
@@ -100,19 +100,23 @@ class ShippingScreen extends StatelessWidget {
                   type: TextInputType.number,
                   controller: controller.mobileController),
               // const Spacer(),
-              20.heightBox,
+              Dimensions.twentyH.heightBox,
               Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(Dimensions.tenH),
                   color: lightGolden,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    1.widthBox,
-                    "Payment:".text.fontFamily(semibold).size(18).make(),
+                    (Dimensions.twoH * 0.5).widthBox,
+                    "Payment:"
+                        .text
+                        .fontFamily(semibold)
+                        .size(Dimensions.font18)
+                        .make(),
                     const DropdownDemo(),
-                    1.widthBox,
+                    (Dimensions.twoW * 0.5).widthBox,
                   ],
                 ),
               ),

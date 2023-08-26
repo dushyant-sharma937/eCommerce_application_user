@@ -25,8 +25,11 @@ class OrdersDetails extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding:
-                  const EdgeInsets.only(top: 8, bottom: 8, left: 8, right: 8),
+              padding: EdgeInsets.only(
+                  top: Dimensions.eightH,
+                  bottom: Dimensions.eightH,
+                  left: Dimensions.eightW,
+                  right: Dimensions.eightW),
               child: Column(
                 children: [
                   orderStatus(
@@ -35,30 +38,30 @@ class OrdersDetails extends StatelessWidget {
                     title: "Placed",
                     showDone: data['order_placed'],
                   ),
-                  5.heightBox,
+                  (Dimensions.tenH * 0.5).heightBox,
                   orderStatus(
                     color: Colors.yellow,
                     icon: Icons.thumb_up_alt,
                     title: "Confirmed",
                     showDone: data['order_confirmed'],
                   ),
-                  5.heightBox,
+                  (Dimensions.tenH * 0.5).heightBox,
                   orderStatus(
                     color: Colors.green,
                     icon: Icons.delivery_dining,
                     title: "On Delivery",
                     showDone: data['order_on_delivery'],
                   ),
-                  5.heightBox,
+                  (Dimensions.tenH * 0.5).heightBox,
                   orderStatus(
                     color: Colors.red,
                     icon: Icons.done_all_rounded,
                     title: "Delivered",
                     showDone: data['order_delivered'],
                   ),
-                  5.heightBox,
+                  (Dimensions.tenH * 0.5).heightBox,
                   const Divider(thickness: 1),
-                  5.heightBox,
+                  (Dimensions.tenH * 0.5).heightBox,
                   Column(
                     children: [
                       OrderPlaceDetails(
@@ -67,7 +70,7 @@ class OrdersDetails extends StatelessWidget {
                         t2: "Shipping Method",
                         d2: "${data['shipping_method']}",
                       ),
-                      5.heightBox,
+                      (Dimensions.tenH * 0.5).heightBox,
                       OrderPlaceDetails(
                         t1: "Order Date",
                         d1: intl.DateFormat.yMd()
@@ -75,17 +78,18 @@ class OrdersDetails extends StatelessWidget {
                         t2: "Payment Method",
                         d2: "${data['payment_method']}",
                       ),
-                      5.heightBox,
+                      (Dimensions.tenH * 0.5).heightBox,
                       const OrderPlaceDetails(
                         t1: "Payment Status ",
                         d1: "Unpaid",
                         t2: "Delivery Status",
                         d2: "Order Placed",
                       ),
-                      5.heightBox,
+                      (Dimensions.tenH * 0.5).heightBox,
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 8),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: Dimensions.sixteenH,
+                            vertical: Dimensions.eightW),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -106,7 +110,7 @@ class OrdersDetails extends StatelessWidget {
                               ],
                             ),
                             SizedBox(
-                              width: 120,
+                              width: Dimensions.hundredW * 1.2,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,14 +131,14 @@ class OrdersDetails extends StatelessWidget {
                         ),
                       ).box.outerShadowMd.white.make(),
                       const Divider(thickness: 1),
-                      10.heightBox,
+                      Dimensions.tenH.heightBox,
                       "Ordered Product(s)"
                           .text
-                          .size(16)
+                          .size(Dimensions.font16)
                           .color(darkFontGrey)
                           .fontFamily(semibold)
                           .makeCentered(),
-                      10.heightBox,
+                      Dimensions.tenH.heightBox,
                       ListView(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
@@ -149,9 +153,9 @@ class OrdersDetails extends StatelessWidget {
                           .box
                           .outerShadowMd
                           .white
-                          .margin(const EdgeInsets.only(bottom: 4))
+                          .margin(EdgeInsets.only(bottom: Dimensions.twoH * 2))
                           .make(),
-                      20.heightBox,
+                      Dimensions.twentyH.heightBox,
                     ],
                   )
                 ],

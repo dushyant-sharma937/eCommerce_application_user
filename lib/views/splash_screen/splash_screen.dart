@@ -20,9 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
         if (user == null && mounted) {
           Get.to(() => const PhoneAuthScreen());
         } else {
-          // Get.to(() => const PhoneAuthScreen());
           Get.to(() => const Home());
-          print(user);
         }
       });
     });
@@ -45,14 +43,14 @@ class _SplashScreenState extends State<SplashScreen> {
               alignment: Alignment.topLeft,
               child: Image.asset(
                 icSplashBg,
-                width: 300,
+                width: Dimensions.hundredW * 3,
               ),
             ),
-            20.heightBox,
+            Dimensions.twentyH.heightBox,
             appLogoWidget(),
-            10.heightBox,
-            appname.text.fontFamily(bold).size(22).white.make(),
-            5.heightBox,
+            Dimensions.tenH.heightBox,
+            appname.text.fontFamily(bold).size(Dimensions.font22).white.make(),
+            (Dimensions.tenH * 0.5).heightBox,
             appversion.text.white.make(),
           ],
         ),

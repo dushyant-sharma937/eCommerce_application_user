@@ -15,7 +15,8 @@ class OrderPlaceDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: EdgeInsets.symmetric(
+          horizontal: Dimensions.sixteenH, vertical: Dimensions.sixteenH * 0.5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -27,7 +28,7 @@ class OrderPlaceDetails extends StatelessWidget {
             ],
           ),
           SizedBox(
-            width: 120,
+            width: Dimensions.hundredW * 1.2,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

@@ -39,39 +39,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         valueColor: AlwaysStoppedAnimation(redColor)));
               } else if (snapshot.data!.docs.isNotEmpty) {
                 var data = snapshot.data!.docs[0];
-                print(data.toString() + "wow");
                 return SafeArea(
                     child: Column(children: [
                   //user details section
-                  10.heightBox,
+                  Dimensions.tenH.heightBox,
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: Dimensions.eightW),
                     child: Row(
                       children: [
                         data['imageUrl'] == ''
                             ? Image.asset(
                                 imgProfile2,
-                                width: 80,
+                                width: Dimensions.hundredW * 0.8,
                                 fit: BoxFit.cover,
                               )
                                 .box
-                                .margin(
-                                    const EdgeInsets.only(left: 12, right: 2))
+                                .margin(EdgeInsets.only(
+                                    left: Dimensions.twelveW,
+                                    right: Dimensions.twoW))
                                 .roundedFull
                                 .clip(Clip.antiAlias)
                                 .make()
                             : Image.network(
                                 data['imageUrl'],
-                                width: 80,
+                                width: Dimensions.hundredW * 0.8,
                                 fit: BoxFit.cover,
                               )
                                 .box
-                                .margin(
-                                    const EdgeInsets.only(left: 12, right: 2))
+                                .margin(EdgeInsets.only(
+                                    left: Dimensions.twelveW,
+                                    right: Dimensions.twoW))
                                 .roundedFull
                                 .clip(Clip.antiAlias)
                                 .make(),
-                        10.widthBox,
+                        Dimensions.tenW.widthBox,
                         Expanded(
                             child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,9 +82,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 .text
                                 .fontFamily(bold)
                                 .white
-                                .size(18)
+                                .size(Dimensions.font18)
                                 .make(),
-                            5.heightBox,
+                            (Dimensions.tenH * 0.5).heightBox,
                             "${data['email']}"
                                 .text
                                 .white
@@ -111,7 +113,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ],
                     ),
                   ),
-                  20.heightBox,
+                  Dimensions.twentyH.heightBox,
 
                   // FutureBuilder(
                   //     future: FirestoreServices.getCount(),
@@ -152,7 +154,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       return ListTile(
                         leading: Image.asset(
                           profileButtonIcon[index],
-                          width: 22,
+                          width: Dimensions.tenW * 2.2,
                           color: Colors.black87,
                         ),
                         title: profileButtonList[index]
@@ -189,9 +191,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   )
                       .box
                       .white
-                      .margin(const EdgeInsets.all(12))
+                      .margin(EdgeInsets.all(Dimensions.twelveW))
                       .rounded
-                      .padding(const EdgeInsets.symmetric(horizontal: 16))
+                      .padding(
+                          EdgeInsets.symmetric(horizontal: Dimensions.sixteenW))
                       .shadowSm
                       .make()
                       .box

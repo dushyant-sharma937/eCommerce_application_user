@@ -30,8 +30,6 @@ class ProfileController extends GetxController {
       }
     } on PlatformException catch (e) {
       VxToast.show(context, msg: e.toString());
-      print(e.message.toString());
-      print(e.code.toString());
     }
   }
 

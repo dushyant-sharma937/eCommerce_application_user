@@ -12,19 +12,24 @@ class CustomDialogueBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(Dimensions.sixteenH),
         height: context.screenHeight * 0.18,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(Dimensions.tenH * 2.5),
           color: Colors.white,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            "Confirm".text.fontFamily(bold).black.size(18).make(),
-            10.heightBox,
-            text.text.fontFamily(semibold).size(16).black.make(),
-            10.heightBox,
+            "Confirm"
+                .text
+                .fontFamily(bold)
+                .black
+                .size(Dimensions.font18)
+                .make(),
+            Dimensions.tenH.heightBox,
+            text.text.fontFamily(semibold).size(Dimensions.font16).black.make(),
+            Dimensions.tenH.heightBox,
             Row(
               children: [
                 const Spacer(),
@@ -41,7 +46,7 @@ class CustomDialogueBox extends StatelessWidget {
                               .fontFamily(bold)
                               .color(Colors.green)
                               .make()),
-                      10.widthBox,
+                      Dimensions.tenW.widthBox,
                       TextButton(
                           onPressed: () {
                             SystemNavigator.pop();

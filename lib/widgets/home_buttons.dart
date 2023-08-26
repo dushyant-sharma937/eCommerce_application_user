@@ -7,9 +7,9 @@ Widget homeButton({width, height, icon, String? title, onPress}) {
     children: [
       Image.asset(
         icon,
-        width: 26,
+        width: Dimensions.tenW * 2.6,
       ),
-      10.heightBox,
+      Dimensions.tenH.heightBox,
       title!.text.fontFamily(semibold).color(darkFontGrey).make(),
     ],
   ).box.rounded.white.size(width, height).make().onTap(onPress);

@@ -22,27 +22,31 @@ class ChatBubble extends StatelessWidget {
           ? TextDirection.rtl
           : TextDirection.ltr,
       child: Container(
-        margin: const EdgeInsets.only(bottom: 8),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        margin: EdgeInsets.only(bottom: Dimensions.eightW),
+        padding: EdgeInsets.symmetric(
+            horizontal: Dimensions.sixteenW, vertical: Dimensions.eightH),
         decoration: BoxDecoration(
           color: data['uid'] == currentUser!.uid
               ? Colors.greenAccent.withOpacity(0.5)
               : Colors.blueAccent.withOpacity(0.5),
           borderRadius: BorderRadius.only(
-            topLeft: const Radius.circular(20),
-            topRight: const Radius.circular(20),
+            topLeft: Radius.circular(Dimensions.twentyH),
+            topRight: Radius.circular(Dimensions.twentyH),
             bottomLeft: data['uid'] == currentUser!.uid
-                ? const Radius.circular(20)
+                ? Radius.circular(Dimensions.twentyH)
                 : const Radius.circular(0),
             bottomRight: data['uid'] == currentUser!.uid
                 ? const Radius.circular(0)
-                : const Radius.circular(20),
+                : Radius.circular(Dimensions.twentyH),
           ),
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-          "${data['msg']}".text.size(16).make(),
-          10.heightBox,
-          time.text.color(Colors.black.withOpacity(0.5)).size(12).make(),
+          "${data['msg']}".text.size(Dimensions.font16).make(),
+          Dimensions.tenH.heightBox,
+          time.text
+              .color(Colors.black.withOpacity(0.5))
+              .size(Dimensions.font12)
+              .make(),
         ]),
       ),
     );

@@ -20,13 +20,13 @@ class CartScreen extends StatelessWidget {
         },
         color: Colors.red,
         minWidth: context.width * 0.9,
-        height: 60,
+        height: Dimensions.tenH * 6,
         elevation: 2,
-        shape:
-            ContinuousRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        shape: ContinuousRectangleBorder(
+            borderRadius: BorderRadius.circular(Dimensions.tenH)),
         child: "Proceed to shipping"
             .text
-            .size(18)
+            .size(Dimensions.font18)
             .white
             .fontFamily(semibold)
             .make(),
@@ -35,7 +35,12 @@ class CartScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: redColor,
         automaticallyImplyLeading: false,
-        title: "Your Cart".text.white.fontFamily(bold).size(22).make(),
+        title: "Your Cart"
+            .text
+            .white
+            .fontFamily(bold)
+            .size(Dimensions.font22)
+            .make(),
       ),
       body: StreamBuilder(
           stream: FirestoreServices.getCartProducts(currentUser!.uid),
@@ -50,7 +55,7 @@ class CartScreen extends StatelessWidget {
                 child: "The Cart is Empty"
                     .text
                     .fontFamily(semibold)
-                    .size(18)
+                    .size(Dimensions.font18)
                     .color(darkFontGrey)
                     .make(),
               );
@@ -59,7 +64,7 @@ class CartScreen extends StatelessWidget {
               controller.calculatePrice(data);
               controller.productSnapshot = data;
               return Padding(
-                padding: const EdgeInsets.all(12),
+                padding: EdgeInsets.all(Dimensions.twelveH),
                 child: Column(
                   children: [
                     Expanded(
@@ -69,8 +74,8 @@ class CartScreen extends StatelessWidget {
                               return ListTile(
                                 leading: Image.network(
                                   "${data[index]['img']}",
-                                  height: 50,
-                                  width: 50,
+                                  height: Dimensions.tenH * 5,
+                                  width: Dimensions.tenW * 5,
                                   fit: BoxFit.cover,
                                 ),
                                 title: "${data[index]['title']}"
@@ -110,11 +115,12 @@ class CartScreen extends StatelessWidget {
                               );
                             })),
                     Container(
-                      margin: const EdgeInsets.all(4),
-                      padding: const EdgeInsets.all(8),
+                      margin: EdgeInsets.all(Dimensions.twoH * 2),
+                      padding: EdgeInsets.all(Dimensions.twoH * 2),
                       decoration: BoxDecoration(
                         color: lightGolden,
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.tenH * 0.5),
                       ),
                       height: context.height * 0.05,
                       child: Obx(
@@ -125,14 +131,14 @@ class CartScreen extends StatelessWidget {
                                 .text
                                 .black
                                 .fontFamily(semibold)
-                                .size(18)
+                                .size(Dimensions.font18)
                                 .make(),
                             "${controller.tprice.value}"
                                 .numCurrency
                                 .text
                                 .black
                                 .fontFamily(semibold)
-                                .size(18)
+                                .size(Dimensions.font18)
                                 .make(),
                           ],
                         ),

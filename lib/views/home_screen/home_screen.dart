@@ -19,7 +19,8 @@ class HomeScreen extends StatelessWidget {
     var controller = Get.find<HomeController>();
     return Container(
       color: lightGrey,
-      padding: const EdgeInsets.all(12),
+      padding: EdgeInsets.symmetric(
+          horizontal: Dimensions.twelveH, vertical: Dimensions.twelveW),
       width: context.screenWidth,
       height: context.screenHeight,
       child: SafeArea(
@@ -27,7 +28,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           // search bar
           Container(
-            height: 60,
+            height: Dimensions.tenH * 6,
             alignment: Alignment.center,
             color: lightGrey,
             child: TextFormField(
@@ -54,7 +55,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
 
-          10.heightBox,
+          Dimensions.tenH.heightBox,
           Expanded(
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -64,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                   VxSwiper.builder(
                       aspectRatio: 16 / 9,
                       autoPlay: true,
-                      height: 150,
+                      height: Dimensions.tenH * 15,
                       enlargeCenterPage: true,
                       itemCount: slidersList.length,
                       itemBuilder: (context, index) {
@@ -75,11 +76,12 @@ class HomeScreen extends StatelessWidget {
                             .box
                             .rounded
                             .clip(Clip.antiAlias)
-                            .margin(const EdgeInsets.symmetric(horizontal: 8))
+                            .margin(EdgeInsets.symmetric(
+                                horizontal: Dimensions.eightW))
                             .make();
                       }),
 
-                  10.heightBox,
+                  Dimensions.tenH.heightBox,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: List.generate(
@@ -92,12 +94,12 @@ class HomeScreen extends StatelessWidget {
                             )),
                   ),
                   // 2nd swiper
-                  10.heightBox,
+                  Dimensions.tenH.heightBox,
                   // swiper brands
                   VxSwiper.builder(
                       aspectRatio: 16 / 9,
                       autoPlay: true,
-                      height: 150,
+                      height: Dimensions.hundredH * 1.5,
                       enlargeCenterPage: true,
                       itemCount: secondSlidersList.length,
                       itemBuilder: (context, index) {
@@ -108,12 +110,13 @@ class HomeScreen extends StatelessWidget {
                             .box
                             .rounded
                             .clip(Clip.antiAlias)
-                            .margin(const EdgeInsets.symmetric(horizontal: 8))
+                            .margin(EdgeInsets.symmetric(
+                                horizontal: Dimensions.eightW))
                             .make();
                       }),
 
                   // category buttons
-                  10.heightBox,
+                  Dimensions.tenH.heightBox,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: List.generate(
@@ -135,15 +138,15 @@ class HomeScreen extends StatelessWidget {
                   ),
 
                   // featured Categories
-                  20.heightBox,
+                  Dimensions.twentyH.heightBox,
                   Align(
                       alignment: Alignment.centerLeft,
                       child: featuredCategories.text
                           .color(darkFontGrey)
-                          .size(18)
+                          .size(Dimensions.font18)
                           .fontFamily(semibold)
                           .make()),
-                  20.heightBox,
+                  Dimensions.twentyH.heightBox,
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
@@ -154,7 +157,7 @@ class HomeScreen extends StatelessWidget {
                                     featuredRow(
                                         icon: featuredImages1[index],
                                         title: featuredTitles1[index]),
-                                    10.heightBox,
+                                    Dimensions.tenH.heightBox,
                                     featuredRow(
                                         icon: featuredImages2[index],
                                         title: featuredTitles2[index]),
@@ -163,14 +166,16 @@ class HomeScreen extends StatelessWidget {
                   ),
 
                   // featured products
-                  20.heightBox,
+                  Dimensions.twentyH.heightBox,
                   Container(
                     width: double.infinity,
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 12, horizontal: 6),
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                        image: DecorationImage(
+                    padding: EdgeInsets.symmetric(
+                        vertical: Dimensions.twelveH,
+                        horizontal: Dimensions.twoW * 3),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(Dimensions.eightW)),
+                        image: const DecorationImage(
                             image: AssetImage(icSplashBgCrop),
                             fit: BoxFit.fill)),
                     child: Column(
@@ -178,9 +183,9 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         featuredProduct.text.white
                             .fontFamily(bold)
-                            .size(18)
+                            .size(Dimensions.font18)
                             .make(),
-                        10.heightBox,
+                        Dimensions.tenH.heightBox,
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: StreamBuilder(
@@ -206,17 +211,19 @@ class HomeScreen extends StatelessWidget {
                                               children: [
                                                 Image.network(
                                                   "${featuredProductData[index]['p_imgs'][0]}",
-                                                  width: 150,
-                                                  height: 120,
+                                                  width:
+                                                      Dimensions.hundredW * 1.5,
+                                                  height:
+                                                      Dimensions.hundredH * 1.2,
                                                   fit: BoxFit.cover,
                                                 ),
-                                                10.heightBox,
+                                                Dimensions.tenH.heightBox,
                                                 "${featuredProductData[index]['p_name']}"
                                                     .text
                                                     .fontFamily(semibold)
                                                     .color(darkFontGrey)
                                                     .make(),
-                                                10.heightBox,
+                                                Dimensions.tenH.heightBox,
                                                 "${featuredProductData[index]['p_price']}"
                                                     .text
                                                     .color(redColor)
@@ -225,13 +232,16 @@ class HomeScreen extends StatelessWidget {
                                               ],
                                             )
                                                 .box
-                                                .margin(
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 4))
+                                                .margin(EdgeInsets.symmetric(
+                                                    horizontal:
+                                                        Dimensions.twelveW * 2))
                                                 .white
                                                 .roundedSM
-                                                .padding(
-                                                    const EdgeInsets.all(8))
+                                                .padding(EdgeInsets.symmetric(
+                                                    horizontal:
+                                                        Dimensions.eightW,
+                                                    vertical:
+                                                        Dimensions.eightH))
                                                 .make()
                                                 .onTap(() {
                                               Get.to(() => ItemDetails(
@@ -249,11 +259,11 @@ class HomeScreen extends StatelessWidget {
                   ),
 
                   // third swiper
-                  20.heightBox,
+                  Dimensions.twentyH.heightBox,
                   VxSwiper.builder(
                       aspectRatio: 16 / 9,
                       autoPlay: true,
-                      height: 150,
+                      height: Dimensions.hundredH * 1.5,
                       enlargeCenterPage: true,
                       itemCount: secondSlidersList.length,
                       itemBuilder: (context, index) {
@@ -264,12 +274,13 @@ class HomeScreen extends StatelessWidget {
                             .box
                             .rounded
                             .clip(Clip.antiAlias)
-                            .margin(const EdgeInsets.symmetric(horizontal: 8))
+                            .margin(EdgeInsets.symmetric(
+                                horizontal: Dimensions.eightW))
                             .make();
                       }),
 
                   // all products section
-                  20.heightBox,
+                  Dimensions.twentyH.heightBox,
                   StreamBuilder(
                       stream: FirestoreServices.getAllProducts(),
                       builder: ((BuildContext context,
@@ -294,8 +305,8 @@ class HomeScreen extends StatelessWidget {
                                   children: [
                                     Image.network(
                                       allProduct[index]['p_imgs'][0],
-                                      width: 200,
-                                      height: 200,
+                                      width: Dimensions.hundredW * 2,
+                                      height: Dimensions.hundredH * 2,
                                       fit: BoxFit.fitWidth,
                                     ),
                                     const Spacer(),
@@ -304,7 +315,7 @@ class HomeScreen extends StatelessWidget {
                                         .fontFamily(semibold)
                                         .color(darkFontGrey)
                                         .make(),
-                                    10.heightBox,
+                                    Dimensions.tenH.heightBox,
                                     "${allProduct[index]['p_price']}"
                                         .numCurrency
                                         .text
@@ -314,11 +325,13 @@ class HomeScreen extends StatelessWidget {
                                   ],
                                 )
                                     .box
-                                    .margin(const EdgeInsets.symmetric(
-                                        horizontal: 4))
+                                    .margin(EdgeInsets.symmetric(
+                                        horizontal: Dimensions.twoH * 2))
                                     .white
                                     .roundedSM
-                                    .padding(const EdgeInsets.all(12))
+                                    .padding(EdgeInsets.symmetric(
+                                        horizontal: Dimensions.twelveW,
+                                        vertical: Dimensions.twelveH))
                                     .make()
                                     .onTap(() {
                                   Get.to(() => ItemDetails(

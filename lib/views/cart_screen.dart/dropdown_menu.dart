@@ -23,7 +23,7 @@ class _DropdownDemoState extends State<DropdownDemo> {
                 value: value,
                 child: Text(
                   value,
-                  style: const TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: Dimensions.font18),
                 ),
               );
             }).toList(),

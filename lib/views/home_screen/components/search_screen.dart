@@ -34,13 +34,13 @@ class SearchScreen extends StatelessWidget {
                         .contains(searchText.toLowerCase()))
                     .toList();
                 return Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(Dimensions.eightH),
                   child: filteredData.isEmpty
                       ? "No products found from your search!\nTry changing the spelling"
                           .text
                           .fontFamily(semibold)
                           .color(fontGrey)
-                          .size(18)
+                          .size(Dimensions.font18)
                           .align(TextAlign.center)
                           .makeCentered()
                       : GridView(
@@ -57,8 +57,8 @@ class SearchScreen extends StatelessWidget {
                                     children: [
                                       Image.network(
                                         filteredData[index]['p_imgs'][0],
-                                        width: 200,
-                                        height: 200,
+                                        width: Dimensions.hundredW * 2,
+                                        height: Dimensions.hundredH * 2,
                                         fit: BoxFit.fitWidth,
                                       ),
                                       const Spacer(),
@@ -67,7 +67,7 @@ class SearchScreen extends StatelessWidget {
                                           .fontFamily(semibold)
                                           .color(darkFontGrey)
                                           .make(),
-                                      10.heightBox,
+                                      Dimensions.tenH.heightBox,
                                       "${filteredData[index]['p_price']}"
                                           .numCurrency
                                           .text
@@ -77,12 +77,13 @@ class SearchScreen extends StatelessWidget {
                                     ],
                                   )
                                       .box
-                                      .margin(const EdgeInsets.symmetric(
-                                          horizontal: 4))
+                                      .margin(EdgeInsets.symmetric(
+                                          horizontal: Dimensions.twoW * 2))
                                       .white
                                       .roundedSM
                                       .outerShadowMd
-                                      .padding(const EdgeInsets.all(12))
+                                      .padding(
+                                          EdgeInsets.all(Dimensions.twelveH))
                                       .make()
                                       .onTap(() {
                                     Get.to(() => ItemDetails(

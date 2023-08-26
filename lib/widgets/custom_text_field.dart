@@ -10,8 +10,12 @@ Widget customTextField(
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      title!.text.color(redColor).fontFamily(semibold).size(16).make(),
-      5.heightBox,
+      title!.text
+          .color(redColor)
+          .fontFamily(semibold)
+          .size(Dimensions.sixteenH)
+          .make(),
+      (Dimensions.tenH * 0.5).heightBox,
       TextFormField(
         obscureText: isPass!,
         controller: controller,

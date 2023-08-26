@@ -36,12 +36,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     Navigator.pop(context);
                   },
                   child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    padding:
+                        EdgeInsets.symmetric(vertical: Dimensions.tenH * 1.5),
                     color: Colors.white,
-                    child: const Center(
+                    child: Center(
                       child: Text(
                         'Camera',
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(fontSize: Dimensions.font18),
                       ),
                     ),
                   ),
@@ -57,12 +58,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     Navigator.pop(context);
                   },
                   child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    padding:
+                        EdgeInsets.symmetric(vertical: Dimensions.tenH * 1.5),
                     color: Colors.white,
-                    child: const Center(
+                    child: Center(
                       child: Text(
                         'Gallery',
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(fontSize: Dimensions.font18),
                       ),
                     ),
                   ),
@@ -84,11 +86,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 children: [
                   (MediaQuery.of(context).size.height * 0.15).heightBox,
                   Card(
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                    margin: EdgeInsets.symmetric(
+                        horizontal: Dimensions.eightW,
+                        vertical: Dimensions.sixteenH),
                     elevation: 2,
                     shape: ContinuousRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
+                        borderRadius: BorderRadius.circular(Dimensions.tenH)),
                     child: Obx(
                       () => Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -103,7 +106,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         controller.profileImagePath.isEmpty
                                     ? Image.asset(
                                         imgProfile2,
-                                        width: 100,
+                                        width: Dimensions.hundredW,
                                         fit: BoxFit.cover,
                                       )
                                         .box
@@ -115,7 +118,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                             controller.profileImagePath.isEmpty
                                         ? Image.network(
                                             widget.data['imageUrl'],
-                                            width: 80,
+                                            width: Dimensions.hundredW * 0.8,
                                             fit: BoxFit.cover,
                                           )
                                             .box
@@ -126,7 +129,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         : Image.file(
                                             File(controller
                                                 .profileImagePath.value),
-                                            width: 100,
+                                            width: Dimensions.hundredW,
                                             fit: BoxFit.cover,
                                           )
                                             .box
@@ -134,19 +137,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                             .clip(Clip.antiAlias)
                                             .makeCentered(),
                           ),
-                          10.heightBox,
+                          Dimensions.tenH.heightBox,
                           customTextField(
                               hint: "admin",
                               title: "Name",
                               isPass: false,
                               controller: controller.nameController),
-                          20.heightBox,
+                          Dimensions.twentyH.heightBox,
                           customTextField(
                               hint: "admin@gmail.com",
                               title: "Email",
                               isPass: false,
                               controller: controller.emailController),
-                          30.heightBox,
+                          (Dimensions.tenH * 3).heightBox,
                           controller.isLoading.value
                               ? const Center(
                                   child: CircularProgressIndicator(
@@ -174,7 +177,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ],
                       )
                           .box
-                          .padding(const EdgeInsets.symmetric(horizontal: 10))
+                          .padding(
+                              EdgeInsets.symmetric(horizontal: Dimensions.tenH))
                           .white
                           .roundedSM
                           .size(double.infinity, context.screenHeight * 0.45)

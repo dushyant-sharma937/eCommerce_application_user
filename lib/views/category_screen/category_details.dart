@@ -53,16 +53,17 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                         controller.subcat.length,
                         (index) => "${controller.subcat[index]}"
                                 .text
-                                .size(12)
+                                .size(Dimensions.font12)
                                 .fontFamily(semibold)
                                 .color(darkFontGrey)
                                 .makeCentered()
                                 .box
                                 .rounded
                                 .white
-                                .size(150, 60)
-                                .margin(
-                                    const EdgeInsets.symmetric(horizontal: 4))
+                                .size(Dimensions.hundredH * 1.5,
+                                    Dimensions.tenW * 6)
+                                .margin(EdgeInsets.symmetric(
+                                    horizontal: Dimensions.twoW * 2))
                                 .make()
                                 .onTap(() {
                               switchCategory("${controller.subcat[index]}");
@@ -70,7 +71,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                             })),
                   ),
                 ),
-                20.heightBox,
+                Dimensions.twentyH.heightBox,
                 StreamBuilder(
                     // stream: FirestoreServices.getProducts(widget.title),
                     stream: productMethod,
@@ -86,7 +87,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                         var data = snapshot.data!.docs;
                         return Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.all(12),
+                            padding: EdgeInsets.all(Dimensions.twelveH),
                             child: GridView.builder(
                                 shrinkWrap: true,
                                 itemCount: data.length,
@@ -103,8 +104,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                     children: [
                                       Image.network(
                                         "${data[index]['p_imgs'][0]}",
-                                        width: 200,
-                                        height: 150,
+                                        width: Dimensions.hundredW * 2,
+                                        height: Dimensions.hundredH * 1.5,
                                         fit: BoxFit.fitWidth,
                                       ),
                                       const Divider(
@@ -116,7 +117,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                           .fontFamily(semibold)
                                           .color(darkFontGrey)
                                           .make(),
-                                      10.heightBox,
+                                      Dimensions.tenH.heightBox,
                                       "${data[index]['p_price']}"
                                           .numCurrency
                                           .text
@@ -126,12 +127,13 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                     ],
                                   )
                                       .box
-                                      .margin(const EdgeInsets.symmetric(
-                                          horizontal: 4))
+                                      .margin(EdgeInsets.symmetric(
+                                          horizontal: Dimensions.twoW * 2))
                                       .white
                                       .roundedSM
                                       .outerShadowSm
-                                      .padding(const EdgeInsets.all(12))
+                                      .padding(
+                                          EdgeInsets.all(Dimensions.twelveH))
                                       .make()
                                       .onTap(() {
                                     Get.to(() => ItemDetails(

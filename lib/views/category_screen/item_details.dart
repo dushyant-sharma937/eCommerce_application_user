@@ -1,5 +1,4 @@
 import 'package:emart_app/consts/consts.dart';
-import 'package:emart_app/consts/lists.dart';
 import 'package:emart_app/controllers/product_controller.dart';
 import 'package:emart_app/views/chat_screen/chat_screen.dart';
 import 'package:emart_app/widgets/custom_button.dart';
@@ -57,14 +56,14 @@ class ItemDetails extends StatelessWidget {
           children: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(8),
+                padding: EdgeInsets.all(Dimensions.eightH),
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // swiper Section
                       VxSwiper.builder(
-                          height: 350,
+                          height: Dimensions.hundredH * 3.5,
                           aspectRatio: 16 / 9,
                           viewportFraction: 1.0,
                           itemCount: data['p_imgs'].length,
@@ -75,42 +74,42 @@ class ItemDetails extends StatelessWidget {
                               fit: BoxFit.fitWidth,
                             );
                           }),
-                      10.heightBox,
+                      Dimensions.tenH.heightBox,
                       // title and details section
                       title.text
-                          .size(16)
+                          .size(Dimensions.font16)
                           .color(darkFontGrey)
                           .fontFamily(semibold)
                           .make(),
 
-                      10.heightBox,
+                      Dimensions.tenH.heightBox,
                       "Effective price: ${data['p_price']}"
                           .text
                           .color(redColor)
                           .fontFamily(bold)
-                          .size(18)
+                          .size(Dimensions.font18)
                           .make(),
-                      10.heightBox,
+                      Dimensions.tenH.heightBox,
                       "Mrp: 16000"
                           .text
                           .color(Colors.red)
                           .fontFamily(semibold)
-                          .size(14)
+                          .size(Dimensions.font14)
                           .make(),
-                      10.heightBox,
+                      Dimensions.tenH.heightBox,
                       VxRating(
                         value: double.parse(data['p_rating']),
                         onRatingUpdate: (value) {},
                         normalColor: textfieldGrey,
                         selectionColor: golden,
                         count: 5,
-                        size: 25,
+                        size: Dimensions.tenH * 2.5,
                         maxRating: 5,
                         isSelectable: false,
                         stepInt: false,
                       ),
 
-                      10.heightBox,
+                      Dimensions.tenH.heightBox,
                       Row(
                         children: [
                           Expanded(
@@ -124,7 +123,7 @@ class ItemDetails extends StatelessWidget {
                                   .fontFamily(semibold)
                                   .color(darkFontGrey)
                                   .make(),
-                              5.heightBox,
+                              (Dimensions.tenH * 0.5).heightBox,
                               "${data['p_seller']}"
                                   .text
                                   .color(darkFontGrey)
@@ -147,8 +146,9 @@ class ItemDetails extends StatelessWidget {
                         ],
                       )
                           .box
-                          .height(60)
-                          .padding(const EdgeInsets.symmetric(horizontal: 16))
+                          .height(Dimensions.tenH * 6)
+                          .padding(EdgeInsets.symmetric(
+                              horizontal: Dimensions.sixteenW))
                           .color(textfieldGrey)
                           .make(),
 
@@ -161,7 +161,7 @@ class ItemDetails extends StatelessWidget {
                             Row(
                               children: [
                                 SizedBox(
-                                  width: 100,
+                                  width: Dimensions.hundredW,
                                   child: "Quantity: "
                                       .text
                                       .color(textfieldGrey)
@@ -181,7 +181,7 @@ class ItemDetails extends StatelessWidget {
                                     controller.quantity
                                         .toString()
                                         .text
-                                        .size(16)
+                                        .size(Dimensions.font16)
                                         .color(darkFontGrey)
                                         .fontFamily(bold)
                                         .make(),
@@ -193,7 +193,7 @@ class ItemDetails extends StatelessWidget {
                                           }
                                         },
                                         icon: const Icon(Icons.add)),
-                                    10.widthBox,
+                                    Dimensions.tenW.widthBox,
                                     "(${data['p_quantity']} available)"
                                         .text
                                         .color(fontGrey)
@@ -201,13 +201,16 @@ class ItemDetails extends StatelessWidget {
                                   ],
                                 )
                               ],
-                            ).box.padding(const EdgeInsets.all(8)).make(),
+                            )
+                                .box
+                                .padding(EdgeInsets.all(Dimensions.eightH))
+                                .make(),
 
                             // total Row
                             Row(
                               children: [
                                 SizedBox(
-                                  width: 100,
+                                  width: Dimensions.hundredW,
                                   child: "Total: "
                                       .text
                                       .color(textfieldGrey)
@@ -219,87 +222,45 @@ class ItemDetails extends StatelessWidget {
                                     .numCurrency
                                     .text
                                     .color(redColor)
-                                    .size(16)
+                                    .size(Dimensions.font16)
                                     .fontFamily(bold)
                                     .make()
                               ],
-                            ).box.padding(const EdgeInsets.all(8)).make(),
+                            )
+                                .box
+                                .padding(EdgeInsets.all(Dimensions.eightH))
+                                .make(),
                           ],
                         ).box.white.shadowSm.make(),
                       ),
 
                       // description section
-                      10.heightBox,
+                      Dimensions.tenH.heightBox,
                       "Description"
                           .text
                           .color(darkFontGrey)
                           .fontFamily(semibold)
                           .make(),
-                      10.heightBox,
+                      Dimensions.tenH.heightBox,
                       "${data['p_desc']}".text.color(darkFontGrey).make(),
+                      Dimensions.tenH.heightBox,
 
-                      // buttons section
-                      10.heightBox,
-                      ListView(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        children: List.generate(
-                            itemDetailButtonsList.length,
-                            (index) => ListTile(
-                                  title: itemDetailButtonsList[index]
-                                      .text
-                                      .fontFamily(semibold)
-                                      .color(darkFontGrey)
-                                      .make(),
-                                  trailing: const Icon(Icons.arrow_forward),
-                                )),
-                      ),
-                      20.heightBox,
-
-                      // products you may also like
-                      productsYouMayLike.text
-                          .fontFamily(bold)
-                          .size(16)
-                          .color(darkFontGrey)
-                          .make(),
-                      10.heightBox,
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: List.generate(
-                              6,
-                              (index) => Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Image.asset(
-                                        imgP1,
-                                        width: 150,
-                                        fit: BoxFit.cover,
-                                      ),
-                                      10.heightBox,
-                                      "Laptop 8GB/512GB"
-                                          .text
-                                          .fontFamily(semibold)
-                                          .color(darkFontGrey)
-                                          .make(),
-                                      10.heightBox,
-                                      "\$600"
-                                          .text
-                                          .color(redColor)
-                                          .fontFamily(bold)
-                                          .make(),
-                                    ],
-                                  )
-                                      .box
-                                      .margin(const EdgeInsets.symmetric(
-                                          horizontal: 4))
-                                      .white
-                                      .roundedSM
-                                      .padding(const EdgeInsets.all(8))
-                                      .make()),
-                        ),
-                      ),
+                      // // buttons section
+                      // ListView(
+                      //   physics: const NeverScrollableScrollPhysics(),
+                      //   shrinkWrap: true,
+                      //   children: List.generate(
+                      //       itemDetailButtonsList.length,
+                      //       (index) => ListTile(
+                      //             title: itemDetailButtonsList[index]
+                      //                 .text
+                      //                 .fontFamily(semibold)
+                      //                 .color(darkFontGrey)
+                      //                 .make(),
+                      //             trailing: const Icon(Icons.arrow_forward),
+                      //           )),
+                      // ),
+                      // Dimensions.tenH.heightBox,
                     ],
                   ),
                 ),
@@ -307,7 +268,7 @@ class ItemDetails extends StatelessWidget {
             ),
             SizedBox(
               width: double.infinity,
-              height: 60,
+              height: Dimensions.hundredW * 0.6,
               child: customButton(
                   color: redColor,
                   onPress: () {

@@ -31,7 +31,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
         body: SingleChildScrollView(
           physics: const NeverScrollableScrollPhysics(),
           child: Container(
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.all(Dimensions.twentyH),
             child: Form(
               key: formKey,
               child: Column(
@@ -40,40 +40,44 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                 children: [
                   SizedBox(height: context.screenHeight * 0.1),
                   appLogoWidget(),
-                  10.heightBox,
-                  appname.text.fontFamily(bold).size(22).white.make(),
-                  5.heightBox,
+                  Dimensions.tenH.heightBox,
+                  appname.text
+                      .fontFamily(bold)
+                      .size(Dimensions.font22)
+                      .white
+                      .make(),
+                  (Dimensions.tenH * 0.5).heightBox,
                   appversion.text.white.make(),
                   SizedBox(height: context.screenHeight * 0.1),
-                  const Text(
+                  Text(
                     'Phone Login',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: Dimensions.font20,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  SizedBox(height: Dimensions.tenH),
                   UserInput(
                     nameController: nameController,
                     errorText: "Please enter your name",
                     hintText: "Enter your name",
                     icon: const Icon(Icons.account_circle),
                   ),
-                  const SizedBox(height: 10),
+                  SizedBox(height: Dimensions.tenH),
                   UserInput(
                     nameController: emailController,
                     errorText: "Please enter your email",
                     hintText: "Enter your email",
                     icon: const Icon(Icons.email_rounded),
                   ),
-                  const SizedBox(height: 10),
+                  SizedBox(height: Dimensions.tenH),
                   UserInput(
                     nameController: phoneController,
                     errorText: "Please enter your phone number",
                     hintText: "Enter your phone number",
                     icon: const Icon(Icons.phone),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: Dimensions.twentyH),
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
@@ -81,14 +85,16 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.greenAccent,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 25),
+                          padding: EdgeInsets.symmetric(
+                              vertical: Dimensions.tenH,
+                              horizontal: Dimensions.tenW * 2.5),
                           shape: ContinuousRectangleBorder(
-                              borderRadius: BorderRadius.circular(15))),
-                      child: const Text(
+                              borderRadius: BorderRadius.circular(
+                                  Dimensions.tenH * 1.5))),
+                      child: Text(
                         'Register',
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: Dimensions.font20,
                           color: Colors.black,
                         ),
                       ),
@@ -135,7 +141,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                                 'Please enter the code sent to your mobile number',
                             hintText: 'Enter the code',
                             icon: const Icon(Icons.message)),
-                        const SizedBox(height: 10),
+                        SizedBox(height: Dimensions.tenH),
                         ElevatedButton(
                             onPressed: () async {
                               final code = otpController.text.trim();
@@ -230,15 +236,15 @@ class UserInput extends StatelessWidget {
         hintText: hintText,
         hintStyle: const TextStyle(color: Colors.black54),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(Dimensions.tenH),
           borderSide: const BorderSide(color: Colors.black),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(Dimensions.tenH),
           borderSide: const BorderSide(color: Colors.black),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(Dimensions.tenH),
           borderSide: const BorderSide(color: Colors.red),
         ),
       ),
