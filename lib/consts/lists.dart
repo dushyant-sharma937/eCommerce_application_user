@@ -8,11 +8,11 @@ const secondSlidersList = [imgSs1, imgSs2, imgSs3, imgSs4];
 
 const featuredImages1 = [imgS1, imgS2, imgS3];
 const featuredImages2 = [imgS4, imgS5, imgS6];
-const featuredTitles1 = [WomenDressing, girlsDress, girlWatches];
+const featuredTitles1 = [womenDressing, girlsDress, girlWatches];
 const featuredTitles2 = [boysGlasses, mobilePhones, tShirts];
 
 const categoriesList = [
-  WomenDressing,
+  womenDressing,
   compAccess,
   automobile,
   kidtoys,
