@@ -23,13 +23,17 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
   final emailController = TextEditingController();
   final nameController = TextEditingController();
   final otpController = TextEditingController();
+  final addressController = TextEditingController();
+  final cityController = TextEditingController();
+  final stateController = TextEditingController();
+  final pincodeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return bgWidget(
       child: Scaffold(
         body: SingleChildScrollView(
-          physics: const NeverScrollableScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Container(
             padding: EdgeInsets.all(Dimensions.twentyH),
             child: Form(
@@ -77,11 +81,59 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                     hintText: "Enter your phone number",
                     icon: const Icon(Icons.phone),
                   ),
-                  SizedBox(height: Dimensions.twentyH),
+                  SizedBox(height: Dimensions.tenH),
+                  UserInput(
+                    nameController: addressController,
+                    errorText: "Please enter the address",
+                    hintText: "Enter your address",
+                    icon: const Icon(Icons.home),
+                  ),
+                  SizedBox(height: Dimensions.tenH),
+                  UserInput(
+                    nameController: cityController,
+                    errorText: "Please enter your city",
+                    hintText: "Enter your city",
+                    icon: const Icon(Icons.location_city),
+                  ),
+                  SizedBox(height: Dimensions.tenH),
+                  UserInput(
+                    nameController: stateController,
+                    errorText: "Please enter your state",
+                    hintText: "Enter your state",
+                    icon: const Icon(Icons.add_location),
+                  ),
+                  SizedBox(height: Dimensions.tenH),
+                  UserInput(
+                    nameController: pincodeController,
+                    errorText: "Please enter your pin code",
+                    hintText: "Enter your pin code",
+                    icon: const Icon(Icons.pin),
+                  ),
+                  SizedBox(height: Dimensions.twelveH * 5),
                   Center(
                     child: ElevatedButton(
-                      onPressed: () {
-                        login(context, "+91-${phoneController.text.trim()}");
+                      onPressed: () async {
+                        if (nameController.text.trim().isNotEmptyAndNotNull &&
+                            emailController.text.trim().isNotEmptyAndNotNull &&
+                            addressController.text
+                                .trim()
+                                .isNotEmptyAndNotNull &&
+                            cityController.text.trim().isNotEmptyAndNotNull &&
+                            stateController.text.trim().isNotEmptyAndNotNull &&
+                            pincodeController.text
+                                .trim()
+                                .isNotEmptyAndNotNull &&
+                            pincodeController.text.trim().length == 6 &&
+                            phoneController.text.trim().length == 10) {
+                          await login(
+                              context, "+91-${phoneController.text.trim()}");
+                          print(currentUser);
+                        } else {
+                          openSnackBar(
+                              context,
+                              "Please fill all the details correctly.",
+                              Colors.red);
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: redColor,
@@ -158,7 +210,11 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                                   user,
                                   emailController.text.trim(),
                                   nameController.text.trim(),
-                                  phoneController.text.trim());
+                                  phoneController.text.trim(),
+                                  addressController.text.trim(),
+                                  pincodeController.text.trim(),
+                                  cityController.text.trim(),
+                                  stateController.text.trim());
 
                               // checking whether user exists
                               sp

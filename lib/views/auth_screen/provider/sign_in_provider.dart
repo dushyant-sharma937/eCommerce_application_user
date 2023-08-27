@@ -35,6 +35,18 @@ class SignInProvider extends ChangeNotifier {
   String? _email;
   String? get email => _email;
 
+  String? _address;
+  String? get address => _address;
+
+  String? _city;
+  String? get city => _city;
+
+  String? _state;
+  String? get state => _state;
+
+  String? _pincode;
+  String? get pincode => _pincode;
+
   SignInProvider() {
     checkSignInUser();
   }
@@ -65,7 +77,8 @@ class SignInProvider extends ChangeNotifier {
     }
   }
 
-  void phoneNumberUser(User user, email, name, phone) {
+  void phoneNumberUser(
+      User user, email, name, phone, address, pincode, city, state) {
     _name = name;
     _email = email;
     _imageUrl =
@@ -73,6 +86,11 @@ class SignInProvider extends ChangeNotifier {
     _provider = 'PHONE';
     _uid = user.uid;
     _phone = phone;
+    _address = address;
+    _pincode = pincode;
+    _city = city;
+    _state = state;
+
     notifyListeners();
   }
 
@@ -88,6 +106,10 @@ class SignInProvider extends ChangeNotifier {
               _provider = snapshot['provider'],
               _uid = snapshot['uid'],
               _phone = snapshot['phone'],
+              _address = snapshot['address'],
+              _city = snapshot['city'],
+              _state = snapshot['state'],
+              _pincode = snapshot['pincode'],
             });
   }
 
@@ -104,7 +126,10 @@ class SignInProvider extends ChangeNotifier {
       "wishlist_count": "00",
       "uid": _uid,
       "phone": _phone,
-      "address": "",
+      "address": _address,
+      "city": _city,
+      "state": _state,
+      "pincode": _pincode,
     });
     notifyListeners();
   }
@@ -117,6 +142,10 @@ class SignInProvider extends ChangeNotifier {
     await s.setString('provider', _provider!);
     await s.setString('uid', _uid!);
     await s.setString('phone', _phone!);
+    await s.setString('address', _address!);
+    await s.setString('city', _city!);
+    await s.setString('state', _state!);
+    await s.setString('pincode', _pincode!);
   }
 
   Future getDataFromSharedPreferences() async {
@@ -127,6 +156,10 @@ class SignInProvider extends ChangeNotifier {
     _provider = s.getString('provider');
     _uid = s.getString('uid');
     _phone = s.getString('phone');
+    _address = s.getString('address');
+    _city = s.getString('city');
+    _pincode = s.getString('pincode');
+    _state = s.getString('state');
     notifyListeners();
   }
 

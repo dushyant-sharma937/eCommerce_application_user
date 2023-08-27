@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 class HomeController extends GetxController {
   @override
   void onInit() {
-    getUserName();
     super.onInit();
+    getUserName();
   }
 
   var currentNavIndex = 0.obs;
