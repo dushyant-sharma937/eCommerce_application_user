@@ -14,23 +14,6 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var controller = Get.put(CartController());
     return Scaffold(
-      bottomNavigationBar: MaterialButton(
-        onPressed: () {
-          Get.to(() => const ShippingScreen());
-        },
-        color: Colors.red,
-        minWidth: context.width * 0.9,
-        height: Dimensions.tenH * 6,
-        elevation: 2,
-        shape: ContinuousRectangleBorder(
-            borderRadius: BorderRadius.circular(Dimensions.tenH)),
-        child: "Proceed to shipping"
-            .text
-            .size(Dimensions.font18)
-            .white
-            .fontFamily(semibold)
-            .make(),
-      ),
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: redColor,
@@ -100,9 +83,9 @@ class CartScreen extends StatelessWidget {
                                           .fontFamily(semibold)
                                           .make(),
                                       IconButton(
-                                        onPressed: () {
-                                          FirestoreServices.deleteCartProduct(
-                                              data[index].id);
+                                        onPressed: () async {
+                                          await controller
+                                              .deleteCartProduct(data[index]);
                                         },
                                         icon: const Icon(
                                           Icons.delete,
@@ -143,6 +126,24 @@ class CartScreen extends StatelessWidget {
                           ],
                         ),
                       ),
+                    ),
+                    Dimensions.twelveH.heightBox,
+                    MaterialButton(
+                      onPressed: () {
+                        Get.to(() => const ShippingScreen());
+                      },
+                      color: Colors.red,
+                      minWidth: context.width,
+                      height: Dimensions.tenH * 6,
+                      elevation: 2,
+                      shape: ContinuousRectangleBorder(
+                          borderRadius: BorderRadius.circular(Dimensions.tenH)),
+                      child: "Proceed to shipping"
+                          .text
+                          .size(Dimensions.font18)
+                          .white
+                          .fontFamily(semibold)
+                          .make(),
                     ),
                   ],
                 ),

@@ -79,7 +79,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     return bgWidget(
         child: Scaffold(
-            appBar: AppBar(iconTheme: const IconThemeData(color: whiteColor)),
+            appBar: AppBar(
+              title: "Edit Profile".text.color(whiteColor).semiBold.make(),
+              backgroundColor: redColor,
+              foregroundColor: whiteColor,
+            ),
             body: SingleChildScrollView(
               physics: const NeverScrollableScrollPhysics(),
               child: Column(
@@ -105,7 +109,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 widget.data['imageUrl'] == '' &&
                                         controller.profileImagePath.isEmpty
                                     ? Image.asset(
-                                        imgProfile2,
+                                        imgProfile,
                                         width: Dimensions.hundredW,
                                         fit: BoxFit.cover,
                                       )

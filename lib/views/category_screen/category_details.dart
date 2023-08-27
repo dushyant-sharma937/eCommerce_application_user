@@ -39,12 +39,14 @@ class _CategoryDetailsState extends State<CategoryDetails> {
     return bgWidget(
         child: Scaffold(
             appBar: AppBar(
+              backgroundColor: redColor,
               title: widget.title.text.fontFamily(bold).white.make(),
               iconTheme: const IconThemeData(color: whiteColor),
             ),
             body: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Dimensions.tenH.heightBox,
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   physics: const BouncingScrollPhysics(),

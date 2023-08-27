@@ -2,7 +2,6 @@ import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/consts/lists.dart';
 import 'package:emart_app/controllers/product_controller.dart';
 import 'package:emart_app/views/category_screen/category_details.dart';
-import 'package:emart_app/widgets/bg_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,12 +11,12 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var controller = Get.put(ProductController());
-    return bgWidget(
-        child: Scaffold(
+    return Scaffold(
+      backgroundColor: whiteColor,
       appBar: AppBar(
         title: "Categories".text.fontFamily(bold).white.make(),
-        backgroundColor: const Color.fromARGB(0, 0, 0, 0),
         iconTheme: const IconThemeData(color: whiteColor),
+        backgroundColor: redColor,
         automaticallyImplyLeading: false,
       ),
       body: Container(
@@ -26,7 +25,7 @@ class CategoryScreen extends StatelessWidget {
             itemCount: 9,
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
+                crossAxisCount: 2,
                 mainAxisSpacing: 8,
                 crossAxisSpacing: 8,
                 mainAxisExtent: Dimensions.hundredH * 2),
@@ -61,6 +60,6 @@ class CategoryScreen extends StatelessWidget {
               });
             }),
       ),
-    ));
+    );
   }
 }

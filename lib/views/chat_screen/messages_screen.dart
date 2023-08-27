@@ -14,7 +14,9 @@ class MessagesScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: "Messages".text.color(darkFontGrey).fontFamily(semibold).make(),
+        title: "Messages".text.white.fontFamily(semibold).make(),
+        backgroundColor: redColor,
+        foregroundColor: whiteColor,
       ),
       body: StreamBuilder(
         stream: FirestoreServices.getChatMessages(),
@@ -36,6 +38,9 @@ class MessagesScreen extends StatelessWidget {
                         itemCount: data.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Card(
+                            elevation: 2,
+                            shadowColor: redColor,
+                            color: Colors.grey.shade100,
                             child: ListTile(
                               onTap: () {
                                 Get.to(() => const ChatScreen(), arguments: [
@@ -44,7 +49,7 @@ class MessagesScreen extends StatelessWidget {
                                 ]);
                               },
                               leading: const CircleAvatar(
-                                backgroundColor: redColor,
+                                backgroundColor: Colors.blueAccent,
                                 child: Icon(
                                   Icons.person,
                                   color: Colors.white,

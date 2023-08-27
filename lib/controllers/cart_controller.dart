@@ -4,6 +4,8 @@ import 'package:emart_app/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../services/firebase_services.dart';
+
 class CartController extends GetxController {
   var tprice = 0.obs;
 
@@ -31,7 +33,7 @@ class CartController extends GetxController {
     orderPlaced(true);
     await getProductDetails();
     await firestore.collection(orderCollections).doc().set({
-      'order_code': "233981237",
+      'order_code': DateTime.now().microsecondsSinceEpoch.toString(),
       'order_date': FieldValue.serverTimestamp(),
       'order_by': currentUser!.uid,
       'order_by_name': Get.find<HomeController>().username,
@@ -51,6 +53,7 @@ class CartController extends GetxController {
       'vendors': FieldValue.arrayUnion(vendors),
       'orders': FieldValue.arrayUnion(productList),
     });
+
     orderPlaced(false);
   }
 
@@ -73,5 +76,27 @@ class CartController extends GetxController {
     for (var i = 0; i < productSnapshot.length; i++) {
       firestore.collection(cartCollections).doc(productSnapshot[i].id).delete();
     }
+  }
+
+  updateAddress() async {
+    await firestore.collection(userCollections).doc(currentUser!.uid).set({
+      'address':
+          "${addressController.text} City: ${cityController.text}, Pincode: ${pinCodeController.text}",
+    }, SetOptions(merge: true));
+  }
+
+  deleteCartProduct(data) async {
+    DocumentSnapshot snapshot = await firestore
+        .collection(productCollections)
+        .doc(data['product_id'])
+        .get();
+    Map<String, dynamic> proddata = snapshot.data() as Map<String, dynamic>;
+    var totalQty = proddata['p_quantity'];
+    int x = int.parse(totalQty.toString()) + int.parse("${data['quantity']}");
+    await firestore.collection(productCollections).doc(data['product_id']).set({
+      'p_quantity': x.toString(),
+    }, SetOptions(merge: true));
+    print(x);
+    FirestoreServices.deleteCartProduct(data.id);
   }
 }

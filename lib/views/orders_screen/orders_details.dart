@@ -14,11 +14,9 @@ class OrdersDetails extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: "Order Details"
-            .text
-            .fontFamily(semibold)
-            .color(darkFontGrey)
-            .make(),
+        title: "Order Details".text.fontFamily(semibold).white.make(),
+        backgroundColor: redColor,
+        foregroundColor: whiteColor,
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),

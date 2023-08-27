@@ -84,7 +84,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                         login(context, "+91-${phoneController.text.trim()}");
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.greenAccent,
+                          backgroundColor: redColor,
                           padding: EdgeInsets.symmetric(
                               vertical: Dimensions.tenH,
                               horizontal: Dimensions.tenW * 2.5),
@@ -157,7 +157,8 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                               sp.phoneNumberUser(
                                   user,
                                   emailController.text.trim(),
-                                  nameController.text.trim());
+                                  nameController.text.trim(),
+                                  phoneController.text.trim());
 
                               // checking whether user exists
                               sp

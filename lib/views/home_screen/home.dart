@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  final int? navIndex;
+  const Home({super.key, this.navIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +63,7 @@ class Home extends StatelessWidget {
             type: BottomNavigationBarType.fixed,
             backgroundColor: whiteColor,
             selectedItemColor: redColor,
+            unselectedItemColor: darkFontGrey,
             selectedLabelStyle: const TextStyle(fontFamily: semibold),
             onTap: (value) {
               controller.currentNavIndex.value = value;

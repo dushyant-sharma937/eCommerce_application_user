@@ -22,7 +22,15 @@ class ProductController extends GetxController {
   }
 
   addToCart(
-      {title, tprice, qty, sellername, imageUrl, context, vendorId}) async {
+      {prodId,
+      title,
+      tprice,
+      qty,
+      sellername,
+      imageUrl,
+      context,
+      vendorId,
+      totalQty}) async {
     await firestore.collection(cartCollections).doc().set({
       'title': title,
       'tprice': tprice,
@@ -31,9 +39,15 @@ class ProductController extends GetxController {
       'sellername': sellername,
       'img': imageUrl,
       'added_by': currentUser!.uid,
+      'product_id': prodId,
     }).catchError((error) {
       VxToast.show(context, msg: error.toString());
     });
+    int x = int.parse(totalQty.toString()) - int.parse(qty.toString());
+    await firestore.collection(productCollections).doc(prodId).set({
+      'p_quantity': x.toString(),
+    }, SetOptions(merge: true));
+    print(x);
   }
 
   addToWishlist(docId, context) async {
@@ -52,6 +66,7 @@ class ProductController extends GetxController {
         currentUser!.uid,
       ])
     }, SetOptions(merge: true));
+
     isFav.value = false;
     VxToast.show(context, msg: "Item removed from wishlist");
   }

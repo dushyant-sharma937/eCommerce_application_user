@@ -7,10 +7,17 @@ Widget homeButton({width, height, icon, String? title, onPress}) {
     children: [
       Image.asset(
         icon,
-        width: Dimensions.tenW * 2.6,
+        width: Dimensions.tenW * 3,
       ),
       Dimensions.tenH.heightBox,
       title!.text.fontFamily(semibold).color(darkFontGrey).make(),
     ],
-  ).box.rounded.white.size(width, height).make().onTap(onPress);
+  )
+      .box
+      .roundedFull
+      // .padding(EdgeInsets.all(8))
+      .white
+      .size(width, height)
+      .make()
+      .onTap(onPress);
 }

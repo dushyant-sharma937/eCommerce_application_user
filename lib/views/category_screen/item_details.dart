@@ -21,36 +21,38 @@ class ItemDetails extends StatelessWidget {
       child: Scaffold(
         backgroundColor: whiteColor,
         appBar: AppBar(
+            foregroundColor: whiteColor,
+            backgroundColor: redColor,
             leading: IconButton(
                 onPressed: () {
                   controller.quantity(0);
                   Navigator.pop(context);
                 },
                 icon: const Icon(Icons.arrow_back)),
-            title: title.text.color(darkFontGrey).fontFamily(bold).make(),
+            title: title.text.color(whiteColor).fontFamily(bold).make(),
             actions: [
               IconButton(
                   onPressed: () {},
                   icon: const Icon(
                     Icons.share,
                   )),
-              IconButton(
-                  onPressed: () async {
-                    if (controller.isFav.value) {
-                      await controller.removeFromWishlist(data.id, context);
-                    } else {
-                      await controller.addToWishlist(data.id, context);
-                    }
-                  },
-                  icon: Icon(
-                    // controller.isFav.value
-                    data['p_wishlist'].length > 0
-                        ? Icons.favorite
-                        : Icons.favorite_outline_rounded,
-                    color: data['p_wishlist'].length > 0
-                        ? Colors.red
-                        : Colors.black,
-                  )),
+              Obx(
+                () => IconButton(
+                    onPressed: () async {
+                      if (controller.isFav.value) {
+                        await controller.removeFromWishlist(data.id, context);
+                      } else {
+                        await controller.addToWishlist(data.id, context);
+                      }
+                    },
+                    icon: Icon(
+                      // controller.isFav.value
+                      controller.isFav.value
+                          ? Icons.favorite
+                          : Icons.favorite_outline_rounded,
+                      color: controller.isFav.value ? Colors.red : Colors.black,
+                    )),
+              ),
             ]),
         body: Column(
           children: [
@@ -81,20 +83,20 @@ class ItemDetails extends StatelessWidget {
                           .color(darkFontGrey)
                           .fontFamily(semibold)
                           .make(),
-
                       Dimensions.tenH.heightBox,
-                      "Effective price: ${data['p_price']}"
+                      "Mrp: ${data['p_mrp']}"
                           .text
-                          .color(redColor)
-                          .fontFamily(bold)
-                          .size(Dimensions.font18)
-                          .make(),
-                      Dimensions.tenH.heightBox,
-                      "Mrp: 16000"
-                          .text
+                          .lineThrough
                           .color(Colors.red)
                           .fontFamily(semibold)
                           .size(Dimensions.font14)
+                          .make(),
+                      Dimensions.tenH.heightBox,
+                      "Offer price: ${data['p_price']}"
+                          .text
+                          .color(Colors.green)
+                          .fontFamily(semibold)
+                          .size(Dimensions.font18)
                           .make(),
                       Dimensions.tenH.heightBox,
                       VxRating(
@@ -149,7 +151,7 @@ class ItemDetails extends StatelessWidget {
                           .height(Dimensions.tenH * 6)
                           .padding(EdgeInsets.symmetric(
                               horizontal: Dimensions.sixteenW))
-                          .color(textfieldGrey)
+                          .color(textfieldGrey.withOpacity(0.6))
                           .make(),
 
                       // color section
@@ -244,23 +246,6 @@ class ItemDetails extends StatelessWidget {
                       Dimensions.tenH.heightBox,
                       "${data['p_desc']}".text.color(darkFontGrey).make(),
                       Dimensions.tenH.heightBox,
-
-                      // // buttons section
-                      // ListView(
-                      //   physics: const NeverScrollableScrollPhysics(),
-                      //   shrinkWrap: true,
-                      //   children: List.generate(
-                      //       itemDetailButtonsList.length,
-                      //       (index) => ListTile(
-                      //             title: itemDetailButtonsList[index]
-                      //                 .text
-                      //                 .fontFamily(semibold)
-                      //                 .color(darkFontGrey)
-                      //                 .make(),
-                      //             trailing: const Icon(Icons.arrow_forward),
-                      //           )),
-                      // ),
-                      // Dimensions.tenH.heightBox,
                     ],
                   ),
                 ),
@@ -274,11 +259,13 @@ class ItemDetails extends StatelessWidget {
                   onPress: () {
                     if (controller.quantity.value > 0) {
                       controller.addToCart(
+                          prodId: data.id,
                           title: data['p_name'],
                           vendorId: data['vendor_id'],
                           context: context,
                           imageUrl: data['p_imgs'][0],
                           qty: controller.quantity.value,
+                          totalQty: data['p_quantity'],
                           sellername: data['p_seller'],
                           tprice: controller.quantity.value *
                               (int.parse(data['p_price'])));

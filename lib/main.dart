@@ -33,9 +33,14 @@ class MyApp extends StatelessWidget {
         title: appname,
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.transparent,
+          brightness: Brightness.light,
+          colorScheme: const ColorScheme.light(
+              background: whiteColor,
+              primary: Color.fromARGB(255, 91, 180, 137)),
           appBarTheme: const AppBarTheme(
             iconTheme: IconThemeData(color: darkFontGrey),
-            backgroundColor: Colors.transparent,
+            backgroundColor: whiteColor,
+            // backgroundColor: Colors.transparent,
             elevation: 0.0,
           ),
           fontFamily: regular,

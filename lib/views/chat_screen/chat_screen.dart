@@ -17,11 +17,9 @@ class ChatScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: "${controller.friendName}"
-            .text
-            .color(darkFontGrey)
-            .fontFamily(semibold)
-            .make(),
+        title:
+            "${controller.friendName}".text.white.fontFamily(semibold).make(),
+        backgroundColor: redColor,
       ),
       body: Padding(
         padding: EdgeInsets.all(Dimensions.font12),
@@ -48,6 +46,8 @@ class ChatScreen extends StatelessWidget {
                                 .makeCentered();
                           } else {
                             return ListView(
+                              reverse: true,
+                              shrinkWrap: true,
                               children: snapshot.data!.docs
                                   .mapIndexed((currentValue, index) {
                                 var data = snapshot.data!.docs[index];

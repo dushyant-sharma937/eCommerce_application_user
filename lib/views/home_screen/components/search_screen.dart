@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/consts/consts.dart';
+import 'package:emart_app/controllers/home_controller.dart';
 import 'package:emart_app/services/firebase_services.dart';
 import 'package:emart_app/widgets/loading_indicator.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +14,18 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.find<HomeController>();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: searchText.text.color(darkFontGrey).fontFamily(semibold).make(),
+        title:
+            searchText.text.color(Colors.black87).fontFamily(semibold).make(),
+        leading: IconButton(
+            onPressed: () {
+              Get.back();
+              controller.searchController.clear();
+            },
+            icon: const Icon(Icons.arrow_back)),
       ),
       body: SafeArea(
         child: FutureBuilder(

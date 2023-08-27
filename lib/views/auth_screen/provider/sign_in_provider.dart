@@ -23,6 +23,9 @@ class SignInProvider extends ChangeNotifier {
   String? _name;
   String? get name => _name;
 
+  String? _phone;
+  String? get phone => _phone;
+
   String? _uid;
   String? get uid => _uid;
 
@@ -62,13 +65,14 @@ class SignInProvider extends ChangeNotifier {
     }
   }
 
-  void phoneNumberUser(User user, email, name) {
+  void phoneNumberUser(User user, email, name, phone) {
     _name = name;
     _email = email;
     _imageUrl =
         "https://w7.pngwing.com/pngs/184/113/png-transparent-user-profile-computer-icons-profile-heroes-black-silhouette-thumbnail.png";
     _provider = 'PHONE';
     _uid = user.uid;
+    _phone = phone;
     notifyListeners();
   }
 
@@ -83,6 +87,7 @@ class SignInProvider extends ChangeNotifier {
               _imageUrl = snapshot['imageUrl'],
               _provider = snapshot['provider'],
               _uid = snapshot['uid'],
+              _phone = snapshot['phone'],
             });
   }
 
@@ -98,6 +103,8 @@ class SignInProvider extends ChangeNotifier {
       "order_count": "00",
       "wishlist_count": "00",
       "uid": _uid,
+      "phone": _phone,
+      "address": "",
     });
     notifyListeners();
   }
@@ -109,6 +116,7 @@ class SignInProvider extends ChangeNotifier {
     await s.setString('imageUrl', _imageUrl!);
     await s.setString('provider', _provider!);
     await s.setString('uid', _uid!);
+    await s.setString('phone', _phone!);
   }
 
   Future getDataFromSharedPreferences() async {
@@ -118,6 +126,7 @@ class SignInProvider extends ChangeNotifier {
     _imageUrl = s.getString('imageUrl');
     _provider = s.getString('provider');
     _uid = s.getString('uid');
+    _phone = s.getString('phone');
     notifyListeners();
   }
 
