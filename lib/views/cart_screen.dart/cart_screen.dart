@@ -129,7 +129,8 @@ class CartScreen extends StatelessWidget {
                     ),
                     Dimensions.twelveH.heightBox,
                     MaterialButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        await controller.getAddress();
                         Get.to(() => const ShippingScreen());
                       },
                       color: Colors.red,

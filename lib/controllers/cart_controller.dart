@@ -80,8 +80,11 @@ class CartController extends GetxController {
 
   updateAddress() async {
     await firestore.collection(userCollections).doc(currentUser!.uid).set({
-      'address':
-          "${addressController.text} City: ${cityController.text}, Pincode: ${pinCodeController.text}",
+      'address': addressController.text.trim(),
+      'city': cityController.text.trim(),
+      'pincode': pinCodeController.text.trim(),
+      'state': stateController.text.trim(),
+      // "${addressController.text} City: ${cityController.text}, Pincode: ${pinCodeController.text}",
     }, SetOptions(merge: true));
   }
 
@@ -98,5 +101,19 @@ class CartController extends GetxController {
     }, SetOptions(merge: true));
     print(x);
     FirestoreServices.deleteCartProduct(data.id);
+  }
+
+  getAddress() async {
+    DocumentSnapshot snapshot =
+        await firestore.collection(userCollections).doc(currentUser!.uid).get();
+    Map<String, dynamic> userdata = snapshot.data() as Map<String, dynamic>;
+    if ("${userdata['address']}".isEmptyOrNull) {
+    } else {
+      addressController.text = "${userdata['address']}";
+      pinCodeController.text = "${userdata['pincode']}";
+      cityController.text = "${userdata['city']}";
+      stateController.text = "${userdata['state']}";
+      mobileController.text = "${userdata['phone']}";
+    }
   }
 }
