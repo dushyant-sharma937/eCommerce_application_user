@@ -45,7 +45,8 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                   SizedBox(height: context.screenHeight * 0.1),
                   appLogoWidget(),
                   Dimensions.tenH.heightBox,
-                  appname.text
+                  "Anik"
+                      .text
                       .fontFamily(bold)
                       .size(Dimensions.font22)
                       .white

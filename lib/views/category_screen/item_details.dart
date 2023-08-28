@@ -111,6 +111,95 @@ class ItemDetails extends StatelessWidget {
                         stepInt: false,
                       ),
 
+                      // color section
+                      10.heightBox,
+                      Obx(
+                        () => Column(
+                          children: [
+                            // quantity row
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: Dimensions.hundredW,
+                                  child: "Quantity: "
+                                      .text
+                                      .color(textfieldGrey)
+                                      .color(darkFontGrey)
+                                      .fontFamily(bold)
+                                      .make(),
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    IconButton(
+                                        onPressed: () {
+                                          if (controller.quantity > 0) {
+                                            controller.quantity--;
+                                          }
+                                        },
+                                        icon: const Icon(Icons.remove)),
+                                    controller.quantity
+                                        .toString()
+                                        .text
+                                        .size(Dimensions.font16)
+                                        .color(darkFontGrey)
+                                        .fontFamily(bold)
+                                        .make()
+                                        .box
+                                        .border(color: Colors.black, width: 2)
+                                        .roundedSM
+                                        .padding(const EdgeInsets.symmetric(
+                                            vertical: 2, horizontal: 6))
+                                        .make(),
+                                    IconButton(
+                                        onPressed: () {
+                                          if (controller.quantity <
+                                              int.parse(data['p_quantity'])) {
+                                            controller.quantity++;
+                                          }
+                                        },
+                                        icon: const Icon(Icons.add)),
+                                  ],
+                                ),
+                                Dimensions.tenW.widthBox,
+                                "(${data['p_quantity']} available)"
+                                    .text
+                                    .color(fontGrey)
+                                    .make(),
+                              ],
+                            )
+                                .box
+                                .padding(EdgeInsets.all(Dimensions.eightH))
+                                .make(),
+
+                            // total Row
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: Dimensions.hundredW,
+                                  child: "Total: "
+                                      .text
+                                      .color(textfieldGrey)
+                                      .color(darkFontGrey)
+                                      .fontFamily(bold)
+                                      .make(),
+                                ),
+                                "${controller.quantity * (int.parse(data['p_price']))}"
+                                    .numCurrency
+                                    .text
+                                    .color(redColor)
+                                    .size(Dimensions.font16)
+                                    .fontFamily(bold)
+                                    .make()
+                              ],
+                            )
+                                .box
+                                .padding(EdgeInsets.all(Dimensions.eightH))
+                                .make(),
+                          ],
+                        ).box.white.shadowSm.make(),
+                      ),
                       Dimensions.tenH.heightBox,
                       Row(
                         children: [
@@ -153,88 +242,7 @@ class ItemDetails extends StatelessWidget {
                               horizontal: Dimensions.sixteenW))
                           .color(textfieldGrey.withOpacity(0.6))
                           .make(),
-
-                      // color section
                       20.heightBox,
-                      Obx(
-                        () => Column(
-                          children: [
-                            // quantity row
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: Dimensions.hundredW,
-                                  child: "Quantity: "
-                                      .text
-                                      .color(textfieldGrey)
-                                      .color(darkFontGrey)
-                                      .fontFamily(bold)
-                                      .make(),
-                                ),
-                                Row(
-                                  children: [
-                                    IconButton(
-                                        onPressed: () {
-                                          if (controller.quantity > 0) {
-                                            controller.quantity--;
-                                          }
-                                        },
-                                        icon: const Icon(Icons.remove)),
-                                    controller.quantity
-                                        .toString()
-                                        .text
-                                        .size(Dimensions.font16)
-                                        .color(darkFontGrey)
-                                        .fontFamily(bold)
-                                        .make(),
-                                    IconButton(
-                                        onPressed: () {
-                                          if (controller.quantity <
-                                              int.parse(data['p_quantity'])) {
-                                            controller.quantity++;
-                                          }
-                                        },
-                                        icon: const Icon(Icons.add)),
-                                    Dimensions.tenW.widthBox,
-                                    "(${data['p_quantity']} available)"
-                                        .text
-                                        .color(fontGrey)
-                                        .make(),
-                                  ],
-                                )
-                              ],
-                            )
-                                .box
-                                .padding(EdgeInsets.all(Dimensions.eightH))
-                                .make(),
-
-                            // total Row
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: Dimensions.hundredW,
-                                  child: "Total: "
-                                      .text
-                                      .color(textfieldGrey)
-                                      .color(darkFontGrey)
-                                      .fontFamily(bold)
-                                      .make(),
-                                ),
-                                "${controller.quantity * (int.parse(data['p_price']))}"
-                                    .numCurrency
-                                    .text
-                                    .color(redColor)
-                                    .size(Dimensions.font16)
-                                    .fontFamily(bold)
-                                    .make()
-                              ],
-                            )
-                                .box
-                                .padding(EdgeInsets.all(Dimensions.eightH))
-                                .make(),
-                          ],
-                        ).box.white.shadowSm.make(),
-                      ),
 
                       // description section
                       Dimensions.tenH.heightBox,
@@ -277,7 +285,7 @@ class ItemDetails extends StatelessWidget {
                   },
                   textColor: whiteColor,
                   title: "Add to cart"),
-            )
+            ),
           ],
         ),
       ),
