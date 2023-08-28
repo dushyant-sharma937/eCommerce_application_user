@@ -4,6 +4,7 @@ import 'package:emart_app/controllers/cart_controller.dart';
 import 'package:emart_app/services/firebase_services.dart';
 import 'package:emart_app/views/cart_screen.dart/shipping_screen.dart';
 import 'package:emart_app/widgets/loading_indicator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +13,7 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User? currentUser = auth.currentUser;
     var controller = Get.put(CartController());
     return Scaffold(
       backgroundColor: Colors.white,

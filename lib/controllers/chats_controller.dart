@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/controllers/home_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ChatsController extends GetxController {
+  User? currentUser = auth.currentUser;
   @override
   void onInit() {
     getChatId();
@@ -17,7 +19,6 @@ class ChatsController extends GetxController {
   var friendId = Get.arguments[1];
 
   var senderName = Get.find<HomeController>().username;
-  var currentId = currentUser!.uid;
 
   var msgController = TextEditingController();
 
@@ -30,7 +31,7 @@ class ChatsController extends GetxController {
     await chats
         .where('users', isEqualTo: {
           friendId: null,
-          currentId: null,
+          currentUser!.uid: null,
         })
         .limit(1)
         .get()
@@ -41,7 +42,7 @@ class ChatsController extends GetxController {
             chats.add({
               'created_on': null,
               'last_msg': "",
-              'users': {friendId: null, currentId: null},
+              'users': {friendId: null, currentUser!.uid: null},
               'toId': "",
               'fromId': "",
               'friend_name': friendName,
@@ -58,13 +59,13 @@ class ChatsController extends GetxController {
         'created_on': FieldValue.serverTimestamp(),
         'last_msg': msg,
         'toId': friendId,
-        'fromId': currentId
+        'fromId': currentUser!.uid,
       });
 
       chats.doc(chatDocId).collection(messagesCollections).doc().set({
         'created_on': FieldValue.serverTimestamp(),
         'msg': msg,
-        'uid': currentId
+        'uid': currentUser!.uid,
       });
     }
   }

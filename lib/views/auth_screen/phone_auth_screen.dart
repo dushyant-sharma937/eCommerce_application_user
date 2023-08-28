@@ -17,6 +17,7 @@ class PhoneAuthScreen extends StatefulWidget {
 }
 
 class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
+  User? currentUser = auth.currentUser;
   final formKey = GlobalKey<FormState>();
   // controllers -> phone, email, name, otp code
   final phoneController = TextEditingController();
@@ -128,7 +129,6 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                             phoneController.text.trim().length == 10) {
                           await login(
                               context, "+91-${phoneController.text.trim()}");
-                          print(currentUser);
                         } else {
                           openSnackBar(
                               context,
@@ -205,7 +205,6 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                               User user = (await FirebaseAuth.instance
                                       .signInWithCredential(authCredential))
                                   .user!;
-
                               // save the values
                               sp.phoneNumberUser(
                                   user,

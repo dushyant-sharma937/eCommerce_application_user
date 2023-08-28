@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/services/firebase_services.dart';
 import 'package:emart_app/widgets/loading_indicator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class WishlistScreen extends StatelessWidget {
@@ -9,6 +10,7 @@ class WishlistScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User? currentUser = auth.currentUser;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/models/category_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class ProductController extends GetxController {
+  User? currentUser = auth.currentUser;
   var subcat = [];
   var quantity = 0.obs;
   var isFav = false.obs;
@@ -47,7 +49,6 @@ class ProductController extends GetxController {
     await firestore.collection(productCollections).doc(prodId).set({
       'p_quantity': x.toString(),
     }, SetOptions(merge: true));
-    print(x);
   }
 
   addToWishlist(docId, context) async {

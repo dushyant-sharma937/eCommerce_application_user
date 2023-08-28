@@ -1,6 +1,8 @@
 import 'package:emart_app/consts/consts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class FirestoreServices {
+  static User? currentUser = auth.currentUser;
   // get users data
   static getUserData(uid) {
     return firestore

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../consts/consts.dart';
@@ -13,6 +14,7 @@ class ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User? currentUser = auth.currentUser;
     var t = data['created_on'] == null
         ? DateTime.now()
         : data['created_on'].toDate();
@@ -28,16 +30,16 @@ class ChatBubble extends StatelessWidget {
           padding: EdgeInsets.symmetric(
               horizontal: Dimensions.sixteenH, vertical: Dimensions.eightH),
           decoration: BoxDecoration(
-            color: data['uid'] == currentUser!.uid
+            color: data['uid'] == currentUser.uid
                 ? Colors.greenAccent.withOpacity(0.5)
                 : Colors.blueAccent.withOpacity(0.5),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(Dimensions.twentyH),
               topRight: Radius.circular(Dimensions.twentyH),
-              bottomLeft: data['uid'] == currentUser!.uid
+              bottomLeft: data['uid'] == currentUser.uid
                   ? Radius.circular(Dimensions.twentyH)
                   : const Radius.circular(0),
-              bottomRight: data['uid'] == currentUser!.uid
+              bottomRight: data['uid'] == currentUser.uid
                   ? const Radius.circular(0)
                   : Radius.circular(Dimensions.twentyH),
             ),

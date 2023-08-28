@@ -7,6 +7,7 @@ import 'package:emart_app/views/chat_screen/messages_screen.dart';
 import 'package:emart_app/views/orders_screen/orders_screen.dart';
 import 'package:emart_app/views/splash_screen/splash_screen.dart';
 import 'package:emart_app/views/wishlist_screen/wishlist_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  User? currentUser = auth.currentUser;
   var profileController = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         title: "Profile".text.bold.white.make(),
         backgroundColor: redColor,
+        automaticallyImplyLeading: false,
       ),
       body: StreamBuilder(
           stream: FirestoreServices.getUserData(currentUser!.uid),

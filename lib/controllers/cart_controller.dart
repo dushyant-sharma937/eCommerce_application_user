@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/controllers/home_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,7 +9,7 @@ import '../services/firebase_services.dart';
 
 class CartController extends GetxController {
   var tprice = 0.obs;
-
+  User? currentUser = auth.currentUser;
   var addressController = TextEditingController();
   var cityController = TextEditingController();
   var stateController = TextEditingController();
@@ -99,7 +100,6 @@ class CartController extends GetxController {
     await firestore.collection(productCollections).doc(data['product_id']).set({
       'p_quantity': x.toString(),
     }, SetOptions(merge: true));
-    print(x);
     FirestoreServices.deleteCartProduct(data.id);
   }
 

@@ -3,6 +3,7 @@ import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/controllers/chats_controller.dart';
 import 'package:emart_app/services/firebase_services.dart';
 import 'package:emart_app/widgets/loading_indicator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +14,7 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User? currentUser = auth.currentUser;
     var controller = Get.put(ChatsController());
     return Scaffold(
       backgroundColor: Colors.white,
