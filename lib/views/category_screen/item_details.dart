@@ -111,7 +111,6 @@ class ItemDetails extends StatelessWidget {
                         stepInt: false,
                       ),
 
-                      // color section
                       10.heightBox,
                       Obx(
                         () => Column(

@@ -45,6 +45,8 @@ class CartScreen extends StatelessWidget {
                     .make(),
               );
             } else {
+              // prod data
+
               var data = snapshot.data!.docs;
               controller.calculatePrice(data);
               controller.productSnapshot = data;
