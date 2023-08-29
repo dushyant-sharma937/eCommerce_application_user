@@ -5,7 +5,7 @@ Widget appLogoWidget() {
   return Image.asset(icAppLogo)
       .box
       .white
-      .size(Dimensions.tenH * 7.7, Dimensions.tenW * 7.7)
+      .size(Dimensions.hundredH * 2, Dimensions.hundredH * 2)
       .padding(EdgeInsets.all(Dimensions.eightH))
       .make();
 }

@@ -1,4 +1,4 @@
-const appname = "eMart";
+const appname = "Anik";
 const appversion = "Version 1.0.0";
 const email = "Email";
 const emailHint = "admin@admin.com";

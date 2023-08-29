@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
     var controller = Get.find<HomeController>();
     return Scaffold(
       appBar: AppBar(
-        title: "E-Mart Application".text.bold.make(),
+        title: appname.text.bold.make(),
         automaticallyImplyLeading: false,
         backgroundColor: redColor,
       ),

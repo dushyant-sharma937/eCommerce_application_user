@@ -38,16 +38,18 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: redColor,
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Align(
               alignment: Alignment.topLeft,
               child: Image.asset(
                 icSplashBg,
-                width: Dimensions.hundredW * 3,
+                width: Dimensions.hundredW,
+                fit: BoxFit.fitWidth,
               ),
             ),
             Dimensions.twentyH.heightBox,
-            appLogoWidget(),
+            Center(child: appLogoWidget()),
             Dimensions.tenH.heightBox,
             appname.text.fontFamily(bold).size(Dimensions.font22).white.make(),
             (Dimensions.tenH * 0.5).heightBox,
