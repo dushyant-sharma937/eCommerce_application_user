@@ -34,7 +34,7 @@ Follow these instructions to set up and run the project locally on your machine.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/Ecommerce-Application.git
+   git clone https://github.com/dushyant-sharma937/eCommerce_application_user.git
    
 2. Navigate to the project directory:
    
