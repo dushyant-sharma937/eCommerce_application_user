@@ -18,20 +18,6 @@ class CategoryDetails extends StatefulWidget {
 }
 
 class _CategoryDetailsState extends State<CategoryDetails> {
-  @override
-  void initState() {
-    switchCategory(widget.title);
-    super.initState();
-  }
-
-  switchCategory(title) {
-    if (controller.subcat.contains(title)) {
-      productMethod = FirestoreServices.getCategoryProducts(title);
-    } else {
-      productMethod = FirestoreServices.getProducts(title);
-    }
-  }
-
   var controller = Get.find<ProductController>();
   dynamic productMethod;
   @override
@@ -47,36 +33,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Dimensions.tenH.heightBox,
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  physics: const BouncingScrollPhysics(),
-                  child: Row(
-                    children: List.generate(
-                        controller.subcat.length,
-                        (index) => "${controller.subcat[index]}"
-                                .text
-                                .size(Dimensions.font12)
-                                .fontFamily(semibold)
-                                .color(darkFontGrey)
-                                .makeCentered()
-                                .box
-                                .rounded
-                                .white
-                                .size(Dimensions.hundredH * 1.5,
-                                    Dimensions.tenW * 6)
-                                .margin(EdgeInsets.symmetric(
-                                    horizontal: Dimensions.twoW * 2))
-                                .make()
-                                .onTap(() {
-                              switchCategory("${controller.subcat[index]}");
-                              setState(() {});
-                            })),
-                  ),
-                ),
-                Dimensions.twentyH.heightBox,
                 StreamBuilder(
-                    // stream: FirestoreServices.getProducts(widget.title),
-                    stream: productMethod,
+                    stream: FirestoreServices.getCategoryProducts(widget.title),
                     builder: (BuildContext context,
                         AsyncSnapshot<QuerySnapshot> snapshot) {
                       if (!snapshot.hasData) {

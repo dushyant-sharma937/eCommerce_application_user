@@ -13,30 +13,27 @@ const slidersList = [
   imgSs4
 ];
 
-const featuredTitles1 = [womenDressing, girlsDress, girlWatches];
-const featuredTitles2 = [boysGlasses, mobilePhones, tShirts];
-
 const categoriesList = [
-  womenDressing,
-  compAccess,
-  automobile,
-  kidtoys,
-  sports,
-  cellphone,
-  makeUp,
-  hardware,
-  furniture
+  fruits,
+  dairy,
+  staples,
+  snacks,
+  beverages,
+  personalCare,
+  homeCare,
+  venomProducts,
+  others
 ];
 const categoryImages = [
-  imgFc1,
-  imgFc2,
-  imgFc3,
-  imgFc4,
-  imgFc5,
-  imgFc6,
-  imgFc7,
-  imgFc8,
-  imgFc9
+  cfruits,
+  cbakery,
+  cstaples,
+  csnacks,
+  cbeverages,
+  cpersonalCare,
+  chomeCare,
+  cvenom,
+  cothers
 ];
 
 const itemDetailButtonsList = [

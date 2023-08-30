@@ -19,14 +19,17 @@ class CategoryModel {
 class Category {
   String name;
   List<String> subcategory;
+  List<String> subcategoryImgs;
 
   Category({
     required this.name,
     required this.subcategory,
+    required this.subcategoryImgs,
   });
 
   factory Category.fromJson(Map<String, dynamic> json) => Category(
         name: json["name"],
         subcategory: List<String>.from(json["subcategory"].map((x) => x)),
+        subcategoryImgs: List<String>.from(json["sImages"].map((x) => x)),
       );
 }

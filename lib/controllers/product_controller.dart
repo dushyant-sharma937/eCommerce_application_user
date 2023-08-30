@@ -8,11 +8,13 @@ import 'package:get/get.dart';
 class ProductController extends GetxController {
   User? currentUser = auth.currentUser;
   var subcat = [];
+  var subcatImg = [];
   var quantity = 0.obs;
   var isFav = false.obs;
 
   getSubCategories({categoryTitle}) async {
     subcat.clear();
+    subcatImg.clear();
     var data = await rootBundle.loadString("lib/services/category_model.json");
     var decoded = categoryModelFromJson(data);
     var s = decoded.categories
@@ -20,6 +22,9 @@ class ProductController extends GetxController {
         .toList();
     for (var e in s[0].subcategory) {
       subcat.add(e);
+    }
+    for (var e in s[0].subcategoryImgs) {
+      subcatImg.add(e);
     }
   }
 

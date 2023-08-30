@@ -12,26 +12,19 @@ const searchAnything = "Search anything",
     topSeller = "Top Seller",
     brand = "Brand",
     topCategories = "\t\t\t\t\t\t\tTop\nCategories",
-    womenDressing = "Women Dressing",
-    girlWatches = "GirlWatches",
-    mobilePhones = "MobilePhones",
-    boysGlasses = "Boys Glasses",
-    tShirts = "Tshirts",
-    girlsDress = "Girl Dresses",
     featuredCategories = "Featured Categories",
     featuredProduct = "Featured Product";
 
 // category strings
-const womenClothing = "Women Clothing",
-    menClothingFashion = "Men Clothing & Fashion",
-    compAccess = "Computer and Accessories",
-    automobile = "Automobile",
-    kidtoys = "Kids toys",
-    sports = "Sports",
-    hardware = "Hardware",
-    cellphone = "Cellphone & Tab",
-    makeUp = "Make Up",
-    furniture = "Furniture";
+const fruits = "Fruits & Vegetables",
+    dairy = "Diary & Bakery",
+    staples = "Staples",
+    snacks = "Snacks & Branded Foods",
+    beverages = "Beverages",
+    personalCare = "Personal Care",
+    homeCare = "Home Care",
+    venomProducts = "Venom Products",
+    others = "Others";
 
 // item details strings
 const video = "Video",

@@ -1,74 +1,136 @@
 {
     "categories": [
         {
-            "name": "Women Dressing",
+            "name": "Fruits & Vegetables",
             "subcategory": [
-                "Wedding & Event",
-                "Tops & Sets",
-                "Watches"
+                "Vegetables",
+                "Fruits"
+            ],
+            "sImages": [
+                "assets/sub_categories_icons/vegetables.png",
+                "assets/sub_categories_icons/fruits.png"
             ]
         },
         {
-            "name": "Men Clothing & Fashion",
+            "name": "Diary & Bakery",
             "subcategory":[
-                "Outwear & Jackets", 
-                "Formal Dress",
-                "Accessories"
+                "Dairy", 
+                "Breads & Buns",
+                "Cookies"
+            ], 
+            "sImages": [
+                "assets/sub_categories_icons/dairy.png",
+                "assets/sub_categories_icons/breads.png",
+                "assets/sub_categories_icons/cookies.png"
             ]
         },
         {
-            "name": "Computer and Accessories",
+            "name": "Staples",
             "subcategory": [
-                "Laptop",
-                "Gaming PC",
-                "Official Equipment"
+                "Flours",
+                "Pulses",
+                "Rice & Rics Products",
+                "Spices",
+                "Dry Fruits",
+                "Oils"
+            ],
+            "sImages": [
+                "assets/sub_categories_icons/flours.png",
+                "assets/sub_categories_icons/pulses.png",
+                "assets/sub_categories_icons/rice.png",
+                "assets/sub_categories_icons/spices.png",
+                "assets/sub_categories_icons/dry_fruits.png",
+                "assets/sub_categories_icons/oils.png"
             ]
         },
         {
-            "name": "Automobile",
+            "name": "Snacks & Branded Foods",
             "subcategory": [
-                "Cars",
-                "Bikes"
+                "Biscuits",
+                "Noodles & Pasta",
+                "Namkeens",
+                "Chocolate & Candies",
+                "Ketchup & Sauces",
+                "Sweets",
+                "Pickles & Chutney"
+            ],
+            "sImages": [
+                "assets/sub_categories_icons/biscuits.png",
+                "assets/sub_categories_icons/noodles.png",
+                "assets/sub_categories_icons/namkeen.png",
+                "assets/sub_categories_icons/chocolate.png",
+                "assets/sub_categories_icons/ketchup.png",
+                "assets/sub_categories_icons/sweet.png",
+                "assets/sub_categories_icons/pickle.png"
             ]
         },
         {
-            "name": "Kids & Toys",
+            "name": "Beverages",
             "subcategory": [
-                "Shoes & Bags",
-                "Baby Clothing",
-                "Girls Toys"
+                "Tea",
+                "Coffee",
+                "Soft and Cold Drinks"
+            ],
+            "sImages": [
+                "assets/sub_categories_icons/tea.png",
+                "assets/sub_categories_icons/coffee.png",
+                "assets/sub_categories_icons/soft_drink.png"
             ]
         },
         {
-            "name": "Toys",
+            "name": "Personal Care",
             "subcategory": [
-                "Cycling",
-                "Sneakers",
-                "Swimming"
+                "Hair Care",
+                "Skin Care",
+                "Hand Wash & Body Wash",
+                "Deodrants",
+                "Makeup",
+                "Feminine Hygiene"
+            ],
+            "sImages": [
+                "assets/sub_categories_icons/hairCare.png",
+                "assets/sub_categories_icons/bodyCare.png",
+                "assets/sub_categories_icons/handwash.png",
+                "assets/sub_categories_icons/perfumes.png",
+                "assets/sub_categories_icons/makeup.jpeg",
+                "assets/sub_categories_icons/sanitary.png"
             ]
         },
         {
-            "name": "Jewelery",
+            "name": "Home Care",
             "subcategory": [
-                "Necklace",
-                "Gold",
-                "Earing"
+                "Detergents",
+                "Dishwash",
+                "Cleaners",
+                "Freshners & Repellents"
+            ],
+            "sImages": [
+                "assets/sub_categories_icons/cleaners.png",
+                "assets/sub_categories_icons/dishwash.jpg",
+                "assets/sub_categories_icons/homeCleaners.jpg",
+                "assets/sub_categories_icons/freshners.jpeg"
             ]
         },
         {
-            "name": "Cellphone & Tab",
+            "name": "Venom Products",
             "subcategory": [
-                "Smartphone",
-                "Tablets",
-                "Accessories"
+                "Venom T-shirts",
+                "Venom Perfumes",
+                "Venom Watches"
+            ],
+            "sImages": [
+                "assets/sub_categories_icons/tshirt.png",
+                "assets/sub_categories_icons/perfume.png",
+                "assets/sub_categories_icons/watch.png"
             ]
         },
         {
-            "name": "Furniture",
+            "name": "Others",
             "subcategory": [
-                "Sofa",
-                "Bed",
-                "Home Textile"
+                "Others"
+            ],
+            "sImages":[
+                "assets/categories_icons/others.png"
             ]
         }
     ]
