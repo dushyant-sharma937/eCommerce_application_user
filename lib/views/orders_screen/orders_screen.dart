@@ -29,6 +29,8 @@ class OrderScreen extends StatelessWidget {
             return "No Orders yet!".text.color(darkFontGrey).makeCentered();
           } else {
             var data = snapshot.data!.docs;
+            data = data
+                .sortedBy((a, b) => b['order_code'].compareTo(a['order_code']));
             return ListView.builder(
                 itemCount: data.length,
                 itemBuilder: (context, index) {

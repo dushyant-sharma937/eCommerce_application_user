@@ -72,16 +72,19 @@ class OrdersDetails extends StatelessWidget {
                       OrderPlaceDetails(
                         t1: "Order Date",
                         d1: intl.DateFormat.yMd()
+                            .add_jm()
                             .format(data['order_date'].toDate()),
                         t2: "Payment Method",
                         d2: "${data['payment_method']}",
                       ),
                       (Dimensions.tenH * 0.5).heightBox,
-                      const OrderPlaceDetails(
+                      OrderPlaceDetails(
                         t1: "Payment Status ",
-                        d1: "Unpaid",
+                        d1: data['order_delivered'] ? "Completed" : "Unpaid",
                         t2: "Delivery Status",
                         d2: "Order Placed",
+                        d1color:
+                            data['order_delivered'] ? Colors.green : Colors.red,
                       ),
                       (Dimensions.tenH * 0.5).heightBox,
                       Padding(

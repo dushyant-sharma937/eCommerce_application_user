@@ -4,12 +4,14 @@ import '../../../consts/consts.dart';
 
 class OrderPlaceDetails extends StatelessWidget {
   final String t1, t2, d1, d2;
+  final Color d1color;
   const OrderPlaceDetails({
     super.key,
     required this.t1,
     required this.t2,
     required this.d1,
     required this.d2,
+    this.d1color = Colors.red,
   });
 
   @override
@@ -24,7 +26,7 @@ class OrderPlaceDetails extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               t1.text.fontFamily(semibold).make(),
-              d1.text.color(Colors.red).fontFamily(semibold).make(),
+              d1.text.color(d1color).fontFamily(semibold).make(),
             ],
           ),
           SizedBox(
