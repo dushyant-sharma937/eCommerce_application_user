@@ -15,9 +15,19 @@ Welcome to the Ecommerce Application repository! This Flutter-based application 
 - Real-time chat functionality for users to communicate with sellers.
 - Admin panel application for sellers to manage their products.
 
+## Demo
+
+You can try out the live demo of Bookie App at: [https://example.com/eCommerce-app-demo](https://drive.google.com/file/d/1NMfeDmELLIx0cRbh6_gZnO0vLiiEMye0/view?usp=sharing)
+
+
 ## Screenshots
 
-![App Screenshots](screenshots/screenshot_collage.png)
+[App Screenshot 1, ](https://drive.google.com/file/d/1Nd20mzSGgB2yzVVCx5ygCLttypVk7OLR/view?usp=sharing)
+[App Screenshot 2, ](https://drive.google.com/file/d/1Ncp_aKQxLL9YMSBt2i1KrF8HMxYgOkyM/view?usp=sharing)
+[App Screenshot 3, ](https://drive.google.com/file/d/1NUrNBK9nZ3dlAXhUwCYuUDvhpK_aH_i3/view?usp=sharing)
+[App Screenshot 4, ](https://drive.google.com/file/d/1Nar052jolXayLEgeCBuVkO4-OO3ybK_r/view?usp=sharing)
+[App Screenshot 5, ](https://drive.google.com/file/d/1NUZMI8vuFNLCZQytsarCc6VvLPvMoa6E/view?usp=sharing)
+[App Screenshot 6](https://drive.google.com/file/d/1NRKaMoHSENUU0_aHtQOB6mPM8cOyBW-9/view?usp=sharing)
 
 ## Getting Started
 
