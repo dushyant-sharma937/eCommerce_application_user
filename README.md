@@ -17,7 +17,7 @@ Welcome to the Ecommerce Application repository! This Flutter-based application 
 
 ## Demo
 
-You can try out the live demo of Bookie App at: [https://example.com/eCommerce-app-demo](https://drive.google.com/file/d/1NMfeDmELLIx0cRbh6_gZnO0vLiiEMye0/view?usp=sharing)
+You can try out the live demo of Ecommerce App at: [https://example.com/eCommerce-app-demo](https://drive.google.com/file/d/1NMfeDmELLIx0cRbh6_gZnO0vLiiEMye0/view?usp=sharing)
 
 
 ## Screenshots
